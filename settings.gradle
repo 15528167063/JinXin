@@ -1,2 +1,2 @@
-rootProject.name='TianJianXin'
+rootProject.name='JianXin'
 include ':app', ':baselibrary'
