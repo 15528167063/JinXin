@@ -1,0 +1,63 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion 29
+    buildToolsVersion "29.0.3"
+
+    defaultConfig {
+        minSdkVersion 21
+        targetSdkVersion 29
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles 'consumer-rules.pro'
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    //noinspection GradleCompatible
+    implementation 'com.android.support:appcompat-v7:28.0.0'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+
+    implementation 'androidx.coordinatorlayout:coordinatorlayout:1.1.0'
+    //网络请求
+    api 'io.reactivex.rxjava2:rxandroid:2.1.1'
+    api 'io.reactivex.rxjava2:rxjava:2.2.10'
+    api 'com.squareup.retrofit2:retrofit:2.7.2'
+    api 'com.squareup.retrofit2:converter-gson:2.7.2'
+    api 'com.squareup.retrofit2:adapter-rxjava2:2.7.2'
+    //网络日志
+    api 'com.squareup.okhttp3:logging-interceptor:3.10.0'
+    api 'com.google.code.gson:gson:2.8.2'
+    //Rx生命周期管理
+    api 'com.trello.rxlifecycle2:rxlifecycle:2.2.0'
+    api 'com.trello.rxlifecycle2:rxlifecycle-components:2.2.0'
+
+    api 'jp.wasabeef:glide-transformations:4.1.0'
+    //左滑返回
+    api 'me.imid.swipebacklayout.lib:library:1.1.0'
+    //动态加载权限
+    api 'pub.devrel:easypermissions:3.0.0'
+    //知乎选择头像
+    api 'com.zhihu.android:matisse:0.5.3-beta3'
+    // glide
+    api 'com.github.bumptech.glide:glide:4.11.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
+    api 'com.github.bumptech.glide:okhttp3-integration:4.11.0'
+    // 查看大图
+    api 'com.github.SherlockGougou:BigImageViewPager:androidx-6.0.1'
+
+}
