@@ -1,10 +1,11 @@
-package com.congda.tianjianxin;
+package com.congda.tianjianxin.ui.activity;
 
 
 import android.app.Activity;
 import android.view.View;
 
 import com.congda.baselibrary.base.BaseActivity;
+import com.congda.tianjianxin.R;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,7 +22,6 @@ public class MainActivity extends BaseActivity {
     }
     @Override
     protected void initView() {
-
     }
     @Override
     protected void initListener() {

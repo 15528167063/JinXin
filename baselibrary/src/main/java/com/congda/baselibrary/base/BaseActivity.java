@@ -1,13 +1,16 @@
 package com.congda.baselibrary.base;
 
 import android.Manifest;
+import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
 import com.congda.baselibrary.R;
 import com.congda.baselibrary.utils.IMLogUtil;
 import com.congda.baselibrary.utils.IMStatusBarUtil;
+import com.congda.baselibrary.widget.ActivityUtils;
 import com.congda.baselibrary.widget.loading.ShowLoadiongUtils;
 
 import org.greenrobot.eventbus.EventBus;
@@ -94,12 +97,37 @@ public abstract class BaseActivity extends JxSwipeBackActivity implements EasyPe
      * 加载中
      */
     protected void showLoadingDialog() {
-      ShowLoadiongUtils.showLoadingDialogTypeTwo(this, getResources().getString(R.string.im_loading));
+        ShowLoadiongUtils.showLoadingDialogTypeTwo(this, getResources().getString(R.string.im_loading));
     }
     protected void dissLoadingDialog() {
         ShowLoadiongUtils.dismissLoadingDialogTypeTwo();
     }
 
+    /**
+     * 通过Class跳转界面
+     **/
+    protected void startActivity(Class<?> cls, boolean isFinish) {
+        ActivityUtils.next(this,cls,isFinish);
+    }
+
+    /**
+     * 含有Bundle通过Class跳转界面
+     **/
+    protected void startActivity(Class<?> cls, Bundle bundle, boolean isFinish) {
+        ActivityUtils.next(this,cls,bundle,isFinish);
+    }
+
+    /**
+     * Toast吐司
+     **/
+    protected void showToast(String message) {
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                Toast.makeText(BaseActivity.this, message, Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
     @Override
     protected void onDestroy() {
         super.onDestroy();

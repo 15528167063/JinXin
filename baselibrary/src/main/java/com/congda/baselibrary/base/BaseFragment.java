@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
@@ -13,6 +14,7 @@ import androidx.fragment.app.Fragment;
 import com.congda.baselibrary.R;
 import com.congda.baselibrary.mvp.BasePresenter;
 import com.congda.baselibrary.mvp.IView;
+import com.congda.baselibrary.widget.ActivityUtils;
 import com.congda.baselibrary.widget.loading.ShowLoadiongUtils;
 import com.trello.rxlifecycle2.components.support.RxFragment;
 
@@ -88,6 +90,32 @@ public abstract class BaseFragment extends Fragment {
     }
     protected void dissLoadingDialog() {
         ShowLoadiongUtils.dismissLoadingDialogTypeTwo();
+    }
+    /**
+     * 通过Class跳转界面
+     **/
+    protected void startActivity(Class<?> cls, boolean isFinish) {
+        ActivityUtils.next(this,cls,isFinish);
+    }
+
+    /**
+     * 含有Bundle通过Class跳转界面
+     **/
+    protected void startActivity(Class<?> cls, Bundle bundle, boolean isFinish) {
+        ActivityUtils.next(this,cls,bundle,isFinish);
+    }
+
+
+    /**
+     * Toast吐司
+     **/
+    protected void showToast(String message) {
+        getActivity().runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                Toast.makeText(getActivity(), message, Toast.LENGTH_SHORT).show();
+            }
+        });
     }
     /**
      * 返回一个用于显示界面的布局id
