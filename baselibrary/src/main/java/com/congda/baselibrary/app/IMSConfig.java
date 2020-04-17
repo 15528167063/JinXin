@@ -4,7 +4,7 @@ import java.io.File;
 
 public class IMSConfig {
 
-    public static final String BASE_URL="http://65.52.160.124:9020/kefu-front/";
+    public static final String BASE_URL="http://api-cs.clexin.com/tomato-app/";
 
     public static final String PATH_DATA = BaseApplication.getContext().getCacheDir().getAbsolutePath() + File.separator + "data";
 

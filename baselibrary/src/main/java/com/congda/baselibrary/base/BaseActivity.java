@@ -12,6 +12,7 @@ import com.congda.baselibrary.utils.IMLogUtil;
 import com.congda.baselibrary.utils.IMStatusBarUtil;
 import com.congda.baselibrary.widget.ActivityUtils;
 import com.congda.baselibrary.widget.loading.ShowLoadiongUtils;
+import com.trello.rxlifecycle2.components.RxActivity;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -26,7 +27,7 @@ import pub.devrel.easypermissions.EasyPermissions;
  * 剑之所指，心之所向
  * @date 2019/8/4
  */
-public abstract class BaseActivity extends JxSwipeBackActivity implements EasyPermissions.PermissionCallbacks{
+public abstract class BaseActivity extends RxActivity implements EasyPermissions.PermissionCallbacks{
     public Unbinder unBinder;
     String[] perms = { Manifest.permission.CAMERA,
             Manifest.permission.READ_EXTERNAL_STORAGE,
