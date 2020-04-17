@@ -27,10 +27,10 @@ public abstract class BaseMvpFragment<T extends BasePresenter> extends BaseFragm
 
     @Override
     public void onDestroy() {
-        super.onDestroy();
         if (mPresenter != null) {
             mPresenter.detachView();
         }
+        super.onDestroy();
     }
 
     protected abstract T createPresenter();
