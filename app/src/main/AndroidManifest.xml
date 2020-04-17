@@ -23,13 +23,18 @@
         tools:ignore="UnusedAttribute">
 
 
-        <activity android:name=".ui.activity.GuideActivity">
+        <activity android:name=".ui.activity.mvp.ui.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity android:name=".ui.activity.GuideActivity"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity" />
+
         <activity android:name=".ui.activity.MainActivity"
             android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity" />

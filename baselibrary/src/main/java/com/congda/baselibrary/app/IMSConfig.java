@@ -10,4 +10,5 @@ public class IMSConfig {
 
     public static final String PATH_CACHE = PATH_DATA + "/NetCache";
 
+    public static final String FIRST_OPEN = "first_open";
 }

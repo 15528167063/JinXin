@@ -34,6 +34,9 @@ public abstract class BasePresenter<M extends IModel,V extends IView> implements
         return mModel;
     }
 
+
+
+
     /**
      * 获取 Model
      * @return

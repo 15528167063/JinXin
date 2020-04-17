@@ -32,4 +32,27 @@ public abstract class BaseMvpActivity<T extends BasePresenter> extends BaseActiv
         }
     }
 
+    @Override
+    public void showLoading() {
+        showLoadingDialog();
+    }
+
+    @Override
+    public void hideLoading() {
+        dissLoadingDialog();
+    }
+    @Override
+    public void showError(String msg) {
+        showToast(msg);
+    }
+
+    @Override
+    protected void initListener() {
+
+    }
+
+    @Override
+    protected void initView() {
+
+    }
 }

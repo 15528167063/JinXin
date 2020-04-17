@@ -35,4 +35,26 @@ public abstract class BaseMvpFragment<T extends BasePresenter> extends BaseFragm
 
     protected abstract T createPresenter();
 
+    @Override
+    public void showLoading() {
+        showLoadingDialog();
+    }
+
+    @Override
+    public void hideLoading() {
+        dissLoadingDialog();
+    }
+
+    @Override
+    public void showError(String msg) {
+        showToast(msg);
+    }
+
+    @Override
+    protected void initListener() {
+    }
+
+    @Override
+    protected void initView() {
+    }
 }
