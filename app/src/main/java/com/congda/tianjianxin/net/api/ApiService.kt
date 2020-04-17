@@ -12,12 +12,12 @@ interface ApiService {
     /**
      * 检查当前版本
      */
-    @POST("tomato-app/commons/check-update")
+    @POST("commons/check-update")
     fun getVersonBean(@Body body: RequestBody): Observable<BaseHttpResult<VersonBeanData>>
 
     /**
      * 获取广告
      */
-    @POST("tomato-app/front-ads/get")
+    @POST("front-ads/get")
     fun httpGetAdJson(): Observable<BaseHttpResult<List<SplashAdBean>>>
 }

@@ -7,6 +7,8 @@ import com.congda.baselibrary.net.BaseObserver
 import com.congda.baselibrary.rx.RxSchedulers
 import com.congda.tianjianxin.ui.activity.mvp.contract.SplashContract
 import com.congda.tianjianxin.ui.activity.mvp.model.SplashModel
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 
 class SplashPresenter : BasePresenter<SplashContract.Model, SplashContract.View>() {
 
@@ -16,7 +18,12 @@ class SplashPresenter : BasePresenter<SplashContract.Model, SplashContract.View>
 
     fun getSplashData() {
         model.getGetAdJson()
-            .compose(RxSchedulers.applySchedulers(getLifecycleProvider<Any>()))
+//            .compose(RxSchedulers.applySchedulers(getLifecycleProvider<Any>()))
+
+            .subscribeOn(Schedulers.io())
+            .subscribeOn(AndroidSchedulers.mainThread())
+            .observeOn(AndroidSchedulers.mainThread())
+
             .subscribe(object : BaseObserver<List<SplashAdBean>>(view) {
                 override fun onFailure(code: String, errMsg: String, isNetError: Boolean) {
                     view.showError(errMsg)

@@ -30,7 +30,6 @@ class SplashActivity : BaseMvpActivity<SplashPresenter>(), SplashContract.View, 
         }
         mPresenter.getSplashData()
         skipTv.setOnFinishListener(this)
-//        skipTv.setTotalTime(3000)
     }
 
     /**
@@ -50,7 +49,7 @@ class SplashActivity : BaseMvpActivity<SplashPresenter>(), SplashContract.View, 
     }
 
     override fun setSplashData(result: BaseHttpResult<List<SplashAdBean>>) {
-        skipTv.setTotalTime(3000)
+        skipTv.setTotalTime(5000)
         IMImageLoadUtil.CommonSplashImageLoadCp(this, result.data.get(0).adsImgUrl, iv_bg)
     }
 
