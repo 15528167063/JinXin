@@ -8,9 +8,14 @@ import androidx.annotation.NonNull;
 import com.congda.baselibrary.R;
 import com.congda.baselibrary.utils.IMLogUtil;
 import com.congda.baselibrary.utils.IMStatusBarUtil;
+import com.congda.baselibrary.widget.loading.ShowLoadiongUtils;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.util.List;
 
+import butterknife.ButterKnife;
+import butterknife.Unbinder;
 import pub.devrel.easypermissions.EasyPermissions;
 
 /**
@@ -18,15 +23,39 @@ import pub.devrel.easypermissions.EasyPermissions;
  * 剑之所指，心之所向
  * @date 2019/8/4
  */
-public class BaseActivity extends JxSwipeBackActivity implements EasyPermissions.PermissionCallbacks{
+public abstract class BaseActivity extends JxSwipeBackActivity implements EasyPermissions.PermissionCallbacks{
+    public Unbinder unBinder;
     String[] perms = { Manifest.permission.CAMERA,
             Manifest.permission.READ_EXTERNAL_STORAGE,
             Manifest.permission.WRITE_EXTERNAL_STORAGE};
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(getLayoutId());
         initStatusBar();
         requestPermissions();
+        unBinder = ButterKnife.bind(this);
+        if (useEventBus()) {
+            EventBus.getDefault().register(this);//注册eventBus
+        }
+        initView();
+        initListener();
+        initData();
+    }
+
+    protected abstract int getLayoutId();
+
+    protected abstract void initView();
+
+    protected abstract void initListener();
+
+    protected abstract void initData();
+    /**
+     * 是否使用eventBus
+     */
+    protected  boolean useEventBus(){
+        return false;
     }
     /**
      * 默认状态栏白底黑字
@@ -35,7 +64,6 @@ public class BaseActivity extends JxSwipeBackActivity implements EasyPermissions
         IMStatusBarUtil.setColor(this, getResources().getColor(R.color.white),0);
         IMStatusBarUtil.setLightMode(this);
     }
-
     /**
      * 动态添加权限
      */
@@ -59,6 +87,30 @@ public class BaseActivity extends JxSwipeBackActivity implements EasyPermissions
     }
     @Override
     public void onPermissionsDenied(int requestCode, @NonNull List<String> perms) {
+
+    }
+
+    /**
+     * 加载中
+     */
+    protected void showLoadingDialog() {
+      ShowLoadiongUtils.showLoadingDialogTypeTwo(this, getResources().getString(R.string.im_loading));
+    }
+    protected void dissLoadingDialog() {
+        ShowLoadiongUtils.dismissLoadingDialogTypeTwo();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (unBinder != null) {
+            unBinder.unbind();
+        }
+        if (useEventBus()) {
+            if (EventBus.getDefault().isRegistered(this)) {
+                EventBus.getDefault().unregister(this);//注销eventBus
+            }
+        }
 
     }
 }

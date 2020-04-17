@@ -1,59 +1,125 @@
 package com.congda.baselibrary.base;
 
-import android.app.Activity;
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
 
+import androidx.annotation.LayoutRes;
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
 
+import com.congda.baselibrary.R;
+import com.congda.baselibrary.mvp.BasePresenter;
+import com.congda.baselibrary.mvp.IView;
 import com.congda.baselibrary.widget.loading.ShowLoadiongUtils;
+import com.trello.rxlifecycle2.components.support.RxFragment;
+
+import org.greenrobot.eventbus.EventBus;
+
+import butterknife.ButterKnife;
+import butterknife.Unbinder;
 
 
-public abstract class BaseFragment extends Fragment {
+public abstract class BaseFragment<T extends BasePresenter> extends RxFragment implements IView {
+
+    /**
+     * 将代理类通用行为抽出来
+     */
+    protected T mPresenter;
+
+    private Unbinder unBinder;
+
+    /**
+     * 缓存Fragment view
+     */
+    private View mRootView;
+
+    @Nullable
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        if(mRootView==null){
+            mRootView=inflater.inflate(getLayoutId(),null);
+            unBinder = ButterKnife.bind(this, mRootView);
+            if (useEventBus()) {
+                EventBus.getDefault().register(this);//注册eventBus
+            }
+        }
+        ViewGroup parent= (ViewGroup) mRootView.getParent();
+        if(parent!=null){
+            parent.removeView(mRootView);
+        }
+        return mRootView;
+    }
+
 
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view=initView();
-        iniData();
-        return view;
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        mPresenter =createPresenter();
+        if (mPresenter != null) {
+            mPresenter.attachView(this);
+        }
+        initView();
+        initListener();
     }
-    public abstract void iniData();
-
-    public abstract View initView();
 
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
-    /**
-     * 通用Dialog弹窗
-     */
-    public void showDialog(String title, String message, DialogInterface.OnClickListener listener ){
-        ShowLoadiongUtils.showDialog(getActivity(),title,message,listener);
-    }
-    /**
-     * 显示加载界面loading(第一种自定义)
-     */
-    public void showLoadingDialog() {
-        ShowLoadiongUtils.showLoadingDialogTypeOne(getActivity());
-    }
-    public void dismissLoadingDialog() {
-        ShowLoadiongUtils.dismissLoadingDialogTypeOne();
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        initData();
     }
 
-    /**
-     * 设置添加屏幕的背景透明度
-     * @param bgAlpha
-     */
-    public void backgroundAlpha(Activity context, float bgAlpha) {
-        WindowManager.LayoutParams lp = context.getWindow().getAttributes();
-        lp.alpha = bgAlpha;
-        context.getWindow().addFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
-        context.getWindow().setAttributes(lp);
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
     }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (mPresenter != null) {
+            mPresenter.detachView();
+        }
+        if (unBinder != null) {
+            unBinder.unbind();
+        }
+        if (useEventBus()) {
+            if (EventBus.getDefault().isRegistered(this)) {
+                EventBus.getDefault().unregister(this);//注销eventBus
+            }
+        }
+    }
+    /**
+     * 加载中
+     */
+    protected void showLoadingDialog() {
+        ShowLoadiongUtils.showLoadingDialogTypeTwo(getActivity(), getResources().getString(R.string.im_loading));
+    }
+    protected void dissLoadingDialog() {
+        ShowLoadiongUtils.dismissLoadingDialogTypeTwo();
+    }
+    /**
+     * 返回一个用于显示界面的布局id
+     */
+    protected abstract @LayoutRes int getLayoutId();
+
+    protected abstract T createPresenter();
+    /**
+     * 初始化View的代码写在这个方法中
+     */
+    protected abstract void initView();
+
+    /**
+     * 初始化监听器的代码写在这个方法中
+     */
+    protected abstract void initListener();
+
+    /**
+     * 初始数据的代码写在这个方法中，用于从服务器获取数据
+     */
+    protected abstract void initData();
+
+    protected abstract boolean useEventBus();
+
 }

@@ -20,7 +20,6 @@ public class ShowLoadiongUtils {
      * 通用Dialog弹窗
      */
     public static  void showDialog(Context context,String title, String message, DialogInterface.OnClickListener listener ){
-
         final AlertDialog.Builder normalDialog = new AlertDialog.Builder(context);
         normalDialog.setTitle(title);
         normalDialog.setMessage(message);

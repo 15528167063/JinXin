@@ -7,12 +7,14 @@ import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.trello.rxlifecycle2.components.RxActivity;
+
 import me.imid.swipebacklayout.lib.SwipeBackLayout;
 import me.imid.swipebacklayout.lib.Utils;
 import me.imid.swipebacklayout.lib.app.SwipeBackActivityBase;
 import me.imid.swipebacklayout.lib.app.SwipeBackActivityHelper;
 
-public class JxSwipeBackActivity extends AppCompatActivity implements SwipeBackActivityBase {
+public class JxSwipeBackActivity extends RxActivity implements SwipeBackActivityBase {
     public SwipeBackActivityHelper mHelper;
     @Override
     protected void onCreate(Bundle savedInstanceState) {

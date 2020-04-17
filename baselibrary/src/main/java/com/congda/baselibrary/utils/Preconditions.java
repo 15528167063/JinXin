@@ -1,4 +1,4 @@
-package com.congda.baselibrary.utils.mvp;
+package com.congda.baselibrary.utils;
 
 
 import androidx.annotation.Nullable;

@@ -2,7 +2,7 @@ package com.congda.baselibrary.mvp;
 
 import android.app.Activity;
 
-import com.congda.baselibrary.utils.mvp.Preconditions;
+import com.congda.baselibrary.utils.Preconditions;
 import com.trello.rxlifecycle2.LifecycleProvider;
 
 import io.reactivex.disposables.CompositeDisposable;
