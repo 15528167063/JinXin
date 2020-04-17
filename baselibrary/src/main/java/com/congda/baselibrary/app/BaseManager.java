@@ -3,9 +3,7 @@ package com.congda.baselibrary.app;
 import android.content.Context;
 
 /**
- * @author jinxin
- * 剑之所指，心之所向
- * @date 2019/8/11
+ * 如果app没有继承module的application，就使用这个类进行初始化
  */
 public class BaseManager {
 

@@ -8,7 +8,6 @@ import android.view.ViewGroup;
 import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
 
 import com.congda.baselibrary.R;
 import com.congda.baselibrary.mvp.BasePresenter;
@@ -22,8 +21,12 @@ import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
 
-public abstract class BaseFragment extends Fragment {
+public abstract class BaseMvpFragment<T extends BasePresenter> extends RxFragment implements IView {
 
+    /**
+     * 将代理类通用行为抽出来
+     */
+    protected T mPresenter;
 
     private Unbinder unBinder;
 
@@ -53,6 +56,10 @@ public abstract class BaseFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        mPresenter =createPresenter();
+        if (mPresenter != null) {
+            mPresenter.attachView(this);
+        }
         initView();
         initListener();
     }
@@ -71,6 +78,9 @@ public abstract class BaseFragment extends Fragment {
     @Override
     public void onDestroy() {
         super.onDestroy();
+        if (mPresenter != null) {
+            mPresenter.detachView();
+        }
         if (unBinder != null) {
             unBinder.unbind();
         }
@@ -94,6 +104,7 @@ public abstract class BaseFragment extends Fragment {
      */
     protected abstract @LayoutRes int getLayoutId();
 
+    protected abstract T createPresenter();
     /**
      * 初始化View的代码写在这个方法中
      */
@@ -108,7 +119,6 @@ public abstract class BaseFragment extends Fragment {
      * 初始数据的代码写在这个方法中，用于从服务器获取数据
      */
     protected abstract void initData();
-
 
     protected abstract boolean useEventBus();
 
