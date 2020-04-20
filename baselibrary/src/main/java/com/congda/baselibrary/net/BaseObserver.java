@@ -57,9 +57,9 @@ public abstract class BaseObserver<T> implements Observer<BaseHttpResult<T>> {
                 || e instanceof TimeoutException
                 || e instanceof NetworkErrorException
                 || e instanceof UnknownHostException) {
-            onFailure(null, ServerException.handleException(e).getMessage(), true);
+            onFailure("faile", ServerException.handleException(e).getMessage(), true);
         } else {
-            onFailure(null,ServerException.handleException(e).getMessage(), false);
+            onFailure("faile",ServerException.handleException(e).getMessage(), false);
         }
     }
 

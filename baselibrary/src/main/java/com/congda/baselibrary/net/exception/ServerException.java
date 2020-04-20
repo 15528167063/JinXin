@@ -52,7 +52,7 @@ public class ServerException extends Exception {
             return ex;
         } else if (e instanceof SocketTimeoutException) {
             ex = new ServerException(e, ERROR.TIMEOUT_ERROR);
-            ex.message = "网络连接超时，请检查您的网络状态，稍后重试！";
+            ex.message = e.getMessage();
             return ex;
         } else if (e instanceof ConnectException) {
             ex = new ServerException(e, ERROR.TIMEOUT_ERROR);
