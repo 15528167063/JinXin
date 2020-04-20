@@ -29,7 +29,6 @@ class SplashActivity : BaseMvpActivity<SplashPresenter>(), SplashContract.View, 
             return
         }
         mPresenter.getSplashData()
-//        skipTv.setTotalTime(5000)
         skipTv.setOnFinishListener(this)
     }
 

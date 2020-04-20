@@ -9,7 +9,7 @@ import com.congda.baselibrary.utils.IMStatusBarUtil
 import com.congda.tianjianxin.R
 import com.congda.tianjianxin.adapter.MyViewPagerAdapter
 import com.congda.tianjianxin.ui.fragment.FindFragment
-import com.congda.tianjianxin.ui.fragment.HomeFragment
+import com.congda.tianjianxin.ui.fragment.mvp.ui.HomeFragment
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : BaseActivity(), ViewPager.OnPageChangeListener, View.OnClickListener {
@@ -37,7 +37,7 @@ class MainActivity : BaseActivity(), ViewPager.OnPageChangeListener, View.OnClic
     override fun initData() {
         viewpage.isCanScrollble = true
         viewpage.offscreenPageLimit = 3
-        mFragments.add( HomeFragment())
+        mFragments.add(HomeFragment())
         mFragments.add(FindFragment())
         mFragments.add(FindFragment())
         mFragments.add(FindFragment())
