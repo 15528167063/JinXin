@@ -28,7 +28,8 @@ class SplashActivity : BaseMvpActivity<SplashPresenter>(), SplashContract.View, 
         if(isFirstOpen()){
             return
         }
-        mPresenter.getSplashData()
+//        mPresenter.getSplashData()
+        skipTv.setTotalTime(5000)
         skipTv.setOnFinishListener(this)
     }
 
@@ -48,8 +49,11 @@ class SplashActivity : BaseMvpActivity<SplashPresenter>(), SplashContract.View, 
         startActivity(MainActivity::class.java,true)
     }
 
-    override fun setSplashData(result: BaseHttpResult<List<SplashAdBean>>) {
+    override fun setSplashData(result: BaseHttpResult<List<SplashAdBean>>?) {
         skipTv.setTotalTime(5000)
+        if(result==null){
+            return
+        }
         IMImageLoadUtil.CommonSplashImageLoadCp(this, result.data.get(0).adsImgUrl, iv_bg)
     }
 

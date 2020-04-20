@@ -19,20 +19,16 @@ class SplashPresenter : BasePresenter<SplashContract.Model, SplashContract.View>
     fun getSplashData() {
         model.getGetAdJson()
 //            .compose(RxSchedulers.applySchedulers(getLifecycleProvider<Any>()))
-
             .subscribeOn(Schedulers.io())
             .subscribeOn(AndroidSchedulers.mainThread())
             .observeOn(AndroidSchedulers.mainThread())
 
             .subscribe(object : BaseObserver<List<SplashAdBean>>(view) {
                 override fun onFailure(code: String, errMsg: String, isNetError: Boolean) {
-                    view.showError(errMsg)
+                    view.setSplashData(null)
                 }
 
                 override fun onSuccess(result: BaseHttpResult<List<SplashAdBean>>) {
-                    if(result==null){
-                        return
-                    }
                     view.setSplashData(result)
                 }
 

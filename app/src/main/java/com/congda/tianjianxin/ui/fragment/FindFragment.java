@@ -1,13 +1,12 @@
 package com.congda.tianjianxin.ui.fragment;
 
 import com.congda.baselibrary.base.BaseFragment;
-import com.congda.baselibrary.base.BaseMvpFragment;
-import com.congda.baselibrary.mvp.IPresenter;
+import com.congda.tianjianxin.R;
 
-public class HomeFragment extends BaseFragment {
+public class FindFragment extends BaseFragment {
     @Override
     protected int getLayoutId() {
-        return 0;
+        return R.layout.fragment_find;
     }
 
     @Override

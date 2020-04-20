@@ -24,7 +24,7 @@ import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
 
-public abstract class BaseFragment extends Fragment {
+public abstract class BaseFragment extends RxFragment {
 
 
     private Unbinder unBinder;
@@ -120,7 +120,7 @@ public abstract class BaseFragment extends Fragment {
     /**
      * 返回一个用于显示界面的布局id
      */
-    protected abstract @LayoutRes int getLayoutId();
+    protected abstract  int getLayoutId();
 
     /**
      * 初始化View的代码写在这个方法中

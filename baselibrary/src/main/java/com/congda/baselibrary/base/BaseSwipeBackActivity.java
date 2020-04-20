@@ -14,7 +14,7 @@ import me.imid.swipebacklayout.lib.Utils;
 import me.imid.swipebacklayout.lib.app.SwipeBackActivityBase;
 import me.imid.swipebacklayout.lib.app.SwipeBackActivityHelper;
 
-public class JxSwipeBackActivity extends RxActivity implements SwipeBackActivityBase {
+public class BaseSwipeBackActivity extends BaseRxActivity implements SwipeBackActivityBase {
     public SwipeBackActivityHelper mHelper;
     @Override
     protected void onCreate(Bundle savedInstanceState) {

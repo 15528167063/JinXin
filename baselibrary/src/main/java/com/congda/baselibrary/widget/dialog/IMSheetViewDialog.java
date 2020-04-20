@@ -31,7 +31,7 @@ public class IMSheetViewDialog extends DialogFragment {
         this.callback = callback;
     }
 
-    public void show(FragmentManager fragmentManager, Callback callback) {
+    public void shows(FragmentManager fragmentManager, Callback callback) {
         this.callback=callback;
         show(fragmentManager, "ViewDialogFragment");
     }
