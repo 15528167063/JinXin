@@ -64,11 +64,11 @@ class HomeFragment : BaseMvpFragment<HomePresenter>(), View.OnClickListener, IMS
             R.id.btn5 -> {
                 activity?.let { mPresenter.showBigImageView(it) }
             }
+            R.id.iv1 -> {
+                activity?.let { mPresenter.showSheetView(it) }
+            }
         }
     }
-
-
-
 
     override fun onClick(position: Int) {
         when(position){

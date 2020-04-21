@@ -23,7 +23,7 @@ class SplashPresenter : BasePresenter<SplashContract.Model, SplashContract.View>
             .compose(RxSchedulers.applySchedulers(getLifecycleProvider<ActivityEvent>()))
             .subscribe(object : BaseObserver<List<SplashAdBean>>(view,false) {
                 override fun onFailure(code: String, errMsg: String, isNetError: Boolean) {
-                    view.showError(errMsg)
+                    view.showMessage(errMsg)
                     view.setSplashData(null)
                 }
 

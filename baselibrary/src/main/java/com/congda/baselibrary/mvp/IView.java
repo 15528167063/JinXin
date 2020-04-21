@@ -15,5 +15,5 @@ public interface IView {
     void hideLoading();
 
     //显示吐司
-    void showError(String msg);
+    void showMessage(String msg);
 }

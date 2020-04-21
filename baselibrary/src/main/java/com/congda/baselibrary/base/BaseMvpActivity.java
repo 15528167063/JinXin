@@ -42,7 +42,7 @@ public abstract class BaseMvpActivity<T extends BasePresenter> extends BaseActiv
         dissLoadingDialog();
     }
     @Override
-    public void showError(String msg) {
+    public void showMessage(String msg) {
         showToast(msg);
     }
 
