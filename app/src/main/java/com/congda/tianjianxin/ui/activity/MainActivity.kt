@@ -1,7 +1,9 @@
 package com.congda.tianjianxin.ui.activity
 
+import android.view.KeyEvent
 import android.view.View
 import android.widget.CheckedTextView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.viewpager.widget.ViewPager
 import com.congda.baselibrary.base.BaseActivity
@@ -13,7 +15,7 @@ import com.congda.tianjianxin.ui.fragment.mvp.ui.HomeFragment
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : BaseActivity(), ViewPager.OnPageChangeListener, View.OnClickListener {
-
+    var exitTime: Long = 0
     var mLastIndex = 0
     var mFragments: MutableList<Fragment> = mutableListOf()
     lateinit var mAdapter: MyViewPagerAdapter
@@ -81,6 +83,15 @@ class MainActivity : BaseActivity(), ViewPager.OnPageChangeListener, View.OnClic
                 viewpage.setCurrentItem(i, false)
                 break
             }
+        }
+    }
+
+    override fun onBackPressed() {
+        if (System.currentTimeMillis() - exitTime > 2000) {
+            Toast.makeText(this, "再按一次退出程序", Toast.LENGTH_SHORT).show()
+            exitTime = System.currentTimeMillis()
+        } else {
+            finish()
         }
     }
 }

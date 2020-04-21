@@ -6,6 +6,7 @@ import com.congda.baselibrary.base.BaseFragment
 import com.congda.baselibrary.base.BaseMvpFragment
 import com.congda.baselibrary.utils.glide.IMChooseUtils
 import com.congda.baselibrary.utils.glide.IMImageLoadUtil
+import com.congda.baselibrary.widget.dialog.IMIosCommonDiglog
 import com.congda.baselibrary.widget.dialog.IMSheetDialog
 import com.congda.baselibrary.widget.dialog.IMSheetViewDialog
 import com.congda.tianjianxin.R
@@ -30,6 +31,7 @@ class HomeFragment : BaseMvpFragment<HomePresenter>(), View.OnClickListener, IMS
         btn2.setOnClickListener(this)
         btn3.setOnClickListener(this)
         btn4.setOnClickListener(this)
+        btn5.setOnClickListener(this)
     }
 
     override fun initData() {
@@ -51,6 +53,16 @@ class HomeFragment : BaseMvpFragment<HomePresenter>(), View.OnClickListener, IMS
             }
             R.id.btn3 -> {
                 IMSheetViewDialog().shows(activity?.supportFragmentManager,this)
+            }
+            R.id.btn4 -> {
+                val diglog = IMIosCommonDiglog(activity)
+                diglog.showCommonDiglog("测试测试 心情好"){
+                    showToast("测试测试 心情好")
+                    diglog.dismissCommonDiglog()
+                }
+            }
+            R.id.btn5 -> {
+                activity?.let { mPresenter.showBigImageView(it) }
             }
         }
     }

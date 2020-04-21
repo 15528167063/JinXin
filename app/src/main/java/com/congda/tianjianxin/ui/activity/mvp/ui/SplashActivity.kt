@@ -28,8 +28,8 @@ class SplashActivity : BaseMvpActivity<SplashPresenter>(), SplashContract.View, 
         if(isFirstOpen()){
             return
         }
-        mPresenter.getSplashData()
         skipTv.setOnFinishListener(this)
+        mPresenter.getSplashData()
     }
 
     /**
