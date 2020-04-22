@@ -1,26 +1,24 @@
 package com.congda.tianjianxin.ui.fragment.mvp.ui
 
-import android.content.DialogInterface
+import android.os.Bundle
 import android.view.View
-import com.congda.baselibrary.base.BaseFragment
 import com.congda.baselibrary.base.BaseMvpFragment
-import com.congda.baselibrary.utils.glide.IMChooseUtils
 import com.congda.baselibrary.utils.glide.IMImageLoadUtil
 import com.congda.baselibrary.widget.dialog.IMIosCommonDiglog
-import com.congda.baselibrary.widget.dialog.IMSheetDialog
 import com.congda.baselibrary.widget.dialog.IMSheetViewDialog
 import com.congda.tianjianxin.R
-import com.congda.tianjianxin.ui.fragment.mvp.contract.HomeContract
-import com.congda.tianjianxin.ui.fragment.mvp.presenter.HomePresenter
-import kotlinx.android.synthetic.main.fragment_home.*
+import com.congda.tianjianxin.ui.activity.ComWebActivity
+import com.congda.tianjianxin.ui.fragment.mvp.contract.FirstContract
+import com.congda.tianjianxin.ui.fragment.mvp.presenter.FirstPresenter
+import kotlinx.android.synthetic.main.fragment_first.*
 
-class HomeFragment : BaseMvpFragment<HomePresenter>(), View.OnClickListener, IMSheetViewDialog.Callback ,HomeContract.View{
+class FirstFragment : BaseMvpFragment<FirstPresenter>(), View.OnClickListener, IMSheetViewDialog.Callback ,FirstContract.View{
     override fun getLayoutId(): Int {
-        return R.layout.fragment_home
+        return R.layout.fragment_first
     }
 
-    override fun createPresenter(): HomePresenter {
-        return  HomePresenter()
+    override fun createPresenter(): FirstPresenter {
+        return  FirstPresenter()
     }
 
     override fun initView() {
@@ -33,6 +31,7 @@ class HomeFragment : BaseMvpFragment<HomePresenter>(), View.OnClickListener, IMS
         btn3.setOnClickListener(this)
         btn4.setOnClickListener(this)
         btn5.setOnClickListener(this)
+        btn6.setOnClickListener(this)
     }
 
     override fun initData() {
@@ -60,10 +59,17 @@ class HomeFragment : BaseMvpFragment<HomePresenter>(), View.OnClickListener, IMS
                 diglog.showCommonDiglog("测试测试 心情好"){
                     showToast("测试测试 心情好")
                     diglog.dismissCommonDiglog()
+
                 }
             }
             R.id.btn5 -> {
                 activity?.let { mPresenter.showBigImageView(it) }
+            }
+            R.id.btn6 -> {
+                var bundle=Bundle();
+                bundle.putString("url","http://baidu.com");
+                bundle.putString("title","百度")
+                startActivity(ComWebActivity::class.java,bundle,false)
             }
             R.id.iv1 -> {
                 activity?.let { mPresenter.showSheetView(it) }

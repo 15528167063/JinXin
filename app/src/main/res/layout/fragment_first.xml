@@ -8,28 +8,33 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:text="btn1"
+        android:text="loading"
         android:id="@+id/btn1"/>
     <Button
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:text="btn2"
+        android:text="sheetview"
         android:id="@+id/btn2"/>
     <Button
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:text="btn3"
+        android:text="下部弹出"
         android:id="@+id/btn3"/>
     <Button
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:text="btn4"
+        android:text="dialog弹窗"
         android:id="@+id/btn4"/>
     <Button
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:text="btn5"
+        android:text="图片浏览"
         android:id="@+id/btn5"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:text="webview"
+        android:id="@+id/btn6"/>
 
     <ImageView
         android:id="@+id/iv1"

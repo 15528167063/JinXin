@@ -1,6 +1,5 @@
 package com.congda.tianjianxin.ui.activity
 
-import android.view.KeyEvent
 import android.view.View
 import android.widget.CheckedTextView
 import android.widget.Toast
@@ -10,8 +9,10 @@ import com.congda.baselibrary.base.BaseActivity
 import com.congda.baselibrary.utils.IMStatusBarUtil
 import com.congda.tianjianxin.R
 import com.congda.tianjianxin.adapter.MyViewPagerAdapter
-import com.congda.tianjianxin.ui.fragment.FindFragment
-import com.congda.tianjianxin.ui.fragment.mvp.ui.HomeFragment
+import com.congda.tianjianxin.ui.fragment.mvp.ui.FirstFragment
+import com.congda.tianjianxin.ui.fragment.mvp.ui.FourthFragment
+import com.congda.tianjianxin.ui.fragment.mvp.ui.SecondFragment
+import com.congda.tianjianxin.ui.fragment.mvp.ui.ThirdeFragment
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : BaseActivity(), ViewPager.OnPageChangeListener, View.OnClickListener {
@@ -39,10 +40,10 @@ class MainActivity : BaseActivity(), ViewPager.OnPageChangeListener, View.OnClic
     override fun initData() {
         viewpage.isCanScrollble = true
         viewpage.offscreenPageLimit = 3
-        mFragments.add(HomeFragment())
-        mFragments.add(FindFragment())
-        mFragments.add(FindFragment())
-        mFragments.add(FindFragment())
+        mFragments.add(FirstFragment())
+        mFragments.add(SecondFragment())
+        mFragments.add(ThirdeFragment())
+        mFragments.add(FourthFragment())
         mAdapter = MyViewPagerAdapter(getSupportFragmentManager(), mFragments)
         viewpage.setAdapter(mAdapter)
         viewpage.addOnPageChangeListener(this)

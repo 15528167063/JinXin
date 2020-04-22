@@ -1,6 +1,5 @@
 package com.congda.tianjianxin.ui.fragment.mvp.presenter
 
-import SplashAdBean
 import android.app.Activity
 import android.content.Context
 import android.content.DialogInterface
@@ -10,25 +9,17 @@ import cc.shinichi.library.ImagePreview
 import cc.shinichi.library.bean.ImageInfo
 import cc.shinichi.library.view.listener.OnBigImagePageChangeListener
 import com.congda.baselibrary.mvp.BasePresenter
-import com.congda.baselibrary.net.BaseHttpResult
-import com.congda.baselibrary.net.BaseObserver
-import com.congda.baselibrary.rx.RxSchedulers
 import com.congda.baselibrary.utils.IMSavePictureUtils
 import com.congda.baselibrary.utils.glide.IMChooseUtils
 import com.congda.baselibrary.widget.dialog.IMSheetDialog
-import com.congda.tianjianxin.ui.activity.mvp.contract.SplashContract
-import com.congda.tianjianxin.ui.activity.mvp.model.SplashModel
-import com.congda.tianjianxin.ui.fragment.mvp.contract.HomeContract
-import com.congda.tianjianxin.ui.fragment.mvp.model.HomeModel
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.schedulers.Schedulers
-import kotlinx.android.synthetic.main.activity_splash.*
+import com.congda.tianjianxin.ui.fragment.mvp.contract.FirstContract
+import com.congda.tianjianxin.ui.fragment.mvp.model.FirstModel
 
-class HomePresenter : BasePresenter<HomeContract.Model, HomeContract.View>(),
+class FirstPresenter : BasePresenter<FirstContract.Model, FirstContract.View>(),
     OnBigImagePageChangeListener {
 
-    override fun createModel(): HomeContract.Model {
-        return HomeModel()
+    override fun createModel(): FirstContract.Model {
+        return FirstModel()
     }
     fun showSheetView(context: Context) {
         IMSheetDialog.Builder(context)
