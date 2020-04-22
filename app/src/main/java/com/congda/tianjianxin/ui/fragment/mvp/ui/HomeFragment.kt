@@ -10,10 +10,11 @@ import com.congda.baselibrary.widget.dialog.IMIosCommonDiglog
 import com.congda.baselibrary.widget.dialog.IMSheetDialog
 import com.congda.baselibrary.widget.dialog.IMSheetViewDialog
 import com.congda.tianjianxin.R
+import com.congda.tianjianxin.ui.fragment.mvp.contract.HomeContract
 import com.congda.tianjianxin.ui.fragment.mvp.presenter.HomePresenter
 import kotlinx.android.synthetic.main.fragment_home.*
 
-class HomeFragment : BaseMvpFragment<HomePresenter>(), View.OnClickListener, IMSheetViewDialog.Callback {
+class HomeFragment : BaseMvpFragment<HomePresenter>(), View.OnClickListener, IMSheetViewDialog.Callback ,HomeContract.View{
     override fun getLayoutId(): Int {
         return R.layout.fragment_home
     }
@@ -83,6 +84,5 @@ class HomeFragment : BaseMvpFragment<HomePresenter>(), View.OnClickListener, IMS
             }
         }
     }
-
 
 }

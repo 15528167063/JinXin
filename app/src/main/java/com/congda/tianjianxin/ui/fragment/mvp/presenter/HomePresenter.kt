@@ -34,6 +34,7 @@ class HomePresenter : BasePresenter<HomeContract.Model, HomeContract.View>(),
         IMSheetDialog.Builder(context)
             .addSheet("拍照", DialogInterface.OnClickListener { dialog, which ->
                 dialog.dismiss()
+                view.showToast("拍照")
             })
             .addSheet("选择图片", DialogInterface.OnClickListener { dialog, which ->
                 dialog.dismiss()

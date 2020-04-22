@@ -105,7 +105,7 @@ public abstract class BaseFragment extends RxFragment {
     /**
      * Toast吐司
      **/
-    protected void showToast(String message) {
+    protected void showMessage(String message) {
         getActivity().runOnUiThread(new Runnable() {
             @Override
             public void run() {

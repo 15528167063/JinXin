@@ -46,8 +46,8 @@ public abstract class BaseMvpFragment<T extends BasePresenter> extends BaseFragm
     }
 
     @Override
-    public void showMessage(String msg) {
-        showToast(msg);
+    public void showToast(String msg) {
+        showMessage(msg);
     }
 
     @Override

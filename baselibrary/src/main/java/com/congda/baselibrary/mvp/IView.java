@@ -15,5 +15,5 @@ public interface IView {
     void hideLoading();
 
     //显示吐司
-    void showMessage(String msg);
+    void showToast(String msg);
 }

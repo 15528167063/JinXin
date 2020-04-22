@@ -119,7 +119,7 @@ public abstract class BaseActivity extends BaseSwipeBackActivity implements Easy
     /**
      * Toast吐司
      **/
-    protected void showToast(String message) {
+    protected void showMessage(String message) {
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
