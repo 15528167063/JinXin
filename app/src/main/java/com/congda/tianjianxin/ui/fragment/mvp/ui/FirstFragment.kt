@@ -8,6 +8,7 @@ import com.congda.baselibrary.widget.dialog.IMIosCommonDiglog
 import com.congda.baselibrary.widget.dialog.IMSheetViewDialog
 import com.congda.tianjianxin.R
 import com.congda.tianjianxin.ui.activity.ComWebActivity
+import com.congda.tianjianxin.ui.activity.mvp.ui.ComWebViewActivity
 import com.congda.tianjianxin.ui.fragment.mvp.contract.FirstContract
 import com.congda.tianjianxin.ui.fragment.mvp.presenter.FirstPresenter
 import kotlinx.android.synthetic.main.fragment_first.*
@@ -69,7 +70,7 @@ class FirstFragment : BaseMvpFragment<FirstPresenter>(), View.OnClickListener, I
                 var bundle=Bundle();
                 bundle.putString("url","http://baidu.com");
                 bundle.putString("title","百度")
-                startActivity(ComWebActivity::class.java,bundle,false)
+                startActivity(ComWebViewActivity::class.java,bundle,false)
             }
             R.id.iv1 -> {
                 activity?.let { mPresenter.showSheetView(it) }
