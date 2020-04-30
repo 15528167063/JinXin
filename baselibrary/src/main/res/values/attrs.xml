@@ -8,5 +8,13 @@
         <attr name="indicatorName" format="string"/>
         <attr name="indicatorColor" format="color"/>
     </declare-styleable>
-
+    <declare-styleable name="TabButton">
+        <attr name="tbn_selected_icon" format="reference"/>
+        <attr name="tbn_unselected_icon" format="reference"/>
+        <attr name="tbn_tip" format="string"/>
+        <attr name="tbn_icon_size" format="dimension"/>
+        <attr name="tbn_text_size" format="dimension"/>
+        <attr name="tbn_text_color" format="color"/>
+        <attr name="tbn_checked" format="boolean"/>
+    </declare-styleable>
 </resources>

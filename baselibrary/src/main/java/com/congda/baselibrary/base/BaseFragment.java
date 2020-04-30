@@ -16,14 +16,10 @@ import com.trello.rxlifecycle2.components.support.RxFragment;
 
 import org.greenrobot.eventbus.EventBus;
 
-import butterknife.ButterKnife;
-import butterknife.Unbinder;
-
 
 public abstract class BaseFragment extends RxFragment {
 
 
-    private Unbinder unBinder;
 
     /**
      * 缓存Fragment view
@@ -35,7 +31,6 @@ public abstract class BaseFragment extends RxFragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         if(mRootView==null){
             mRootView=inflater.inflate(getLayoutId(),null);
-            unBinder = ButterKnife.bind(this, mRootView);
             if (useEventBus()) {
                 EventBus.getDefault().register(this);//注册eventBus
             }
@@ -69,9 +64,6 @@ public abstract class BaseFragment extends RxFragment {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        if (unBinder != null) {
-            unBinder.unbind();
-        }
         if (useEventBus()) {
             if (EventBus.getDefault().isRegistered(this)) {
                 EventBus.getDefault().unregister(this);//注销eventBus

@@ -16,8 +16,6 @@ import org.greenrobot.eventbus.EventBus;
 
 import java.util.List;
 
-import butterknife.ButterKnife;
-import butterknife.Unbinder;
 import pub.devrel.easypermissions.EasyPermissions;
 
 /**
@@ -26,7 +24,6 @@ import pub.devrel.easypermissions.EasyPermissions;
  * @date 2019/8/4
  */
 public abstract class BaseActivity extends BaseSwipeBackActivity implements EasyPermissions.PermissionCallbacks{
-    public Unbinder unBinder;
     String[] perms = { Manifest.permission.CAMERA,
             Manifest.permission.READ_EXTERNAL_STORAGE,
             Manifest.permission.WRITE_EXTERNAL_STORAGE};
@@ -37,7 +34,6 @@ public abstract class BaseActivity extends BaseSwipeBackActivity implements Easy
         setContentView(getLayoutId());
         initStatusBar();
         requestPermissions();
-        unBinder = ButterKnife.bind(this);
         if (useEventBus()) {
             EventBus.getDefault().register(this);//注册eventBus
         }
@@ -130,9 +126,6 @@ public abstract class BaseActivity extends BaseSwipeBackActivity implements Easy
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        if (unBinder != null) {
-            unBinder.unbind();
-        }
         if (useEventBus()) {
             if (EventBus.getDefault().isRegistered(this)) {
                 EventBus.getDefault().unregister(this);//注销eventBus

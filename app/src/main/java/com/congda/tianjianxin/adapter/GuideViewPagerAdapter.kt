@@ -11,7 +11,7 @@ class GuideViewPagerAdapter(private val views: List<View>) : PagerAdapter() {
     }
 
     override fun destroyItem(container: ViewGroup, position: Int, any: Any) {
-        (container as ViewPager).removeView(views!![position])
+        (container as ViewPager).removeView(views[position])
     }
 
     override fun isViewFromObject(view: View, any: Any): Boolean {
