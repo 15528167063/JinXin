@@ -26,16 +26,16 @@ class MainActivity : BaseActivity(), ViewPager.OnPageChangeListener, View.OnClic
         return R.layout.activity_main
     }
 
-    override fun initStatusBar() {
-        IMStatusBarUtil.setTranslucentForImageViewInFragment(this, 0, null)
-    }
-
     override fun initView() {
         setSwipeBackEnable(false)
     }
     override fun initListener() {
     }
 
+    override fun initStatusBar() {
+        IMStatusBarUtil.setTranslucentForImageViewInFragment(this, 0, null)
+        IMStatusBarUtil.setLightMode(this)
+    }
 
     override fun initData() {
         viewpage.isCanScrollble = true

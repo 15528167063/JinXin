@@ -12,6 +12,7 @@ import com.congda.tianjianxin.ui.activity.mvp.ui.ComWebViewActivity
 import com.congda.tianjianxin.ui.fragment.mvp.contract.FirstContract
 import com.congda.tianjianxin.ui.fragment.mvp.presenter.FirstPresenter
 import kotlinx.android.synthetic.main.fragment_first.*
+import kotlinx.android.synthetic.main.layout_common_title.*
 
 class FirstFragment : BaseMvpFragment<FirstPresenter>(), View.OnClickListener, IMSheetViewDialog.Callback ,FirstContract.View{
     override fun getLayoutId(): Int {
@@ -23,6 +24,7 @@ class FirstFragment : BaseMvpFragment<FirstPresenter>(), View.OnClickListener, I
     }
 
     override fun initView() {
+        tv_top_title.text="首页"
     }
 
     override fun initListener() {
@@ -69,7 +71,6 @@ class FirstFragment : BaseMvpFragment<FirstPresenter>(), View.OnClickListener, I
             R.id.btn6 -> {
                 var bundle=Bundle();
                 bundle.putString("url","http://baidu.com");
-                bundle.putString("title","百度")
                 startActivity(ComWebViewActivity::class.java,bundle,false)
             }
             R.id.iv1 -> {

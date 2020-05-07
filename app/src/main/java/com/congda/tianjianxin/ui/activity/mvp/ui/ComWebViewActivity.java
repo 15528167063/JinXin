@@ -1,8 +1,8 @@
 package com.congda.tianjianxin.ui.activity.mvp.ui;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.webkit.ValueCallback;
@@ -12,29 +12,33 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import androidx.annotation.Nullable;
+
 import com.congda.baselibrary.base.BaseMvpActivity;
 import com.congda.baselibrary.utils.IMStatusBarUtil;
 import com.congda.tianjianxin.R;
 import com.congda.tianjianxin.ui.activity.mvp.contract.ComWebViewContract;
 import com.congda.tianjianxin.ui.activity.mvp.presenter.ComWebViewPresenter;
-import com.congda.tianjianxin.utils.AndroidInterface;
-import com.just.agentweb.AgentWeb;
+import com.just.agentweb.AgentWebConfig;
 import com.just.agentweb.WebChromeClient;
 import com.just.agentweb.WebViewClient;
 
 
 public class ComWebViewActivity extends BaseMvpActivity<ComWebViewPresenter> implements ComWebViewContract.View, View.OnClickListener {
-    LinearLayout mllRoot;
-    RelativeLayout mRlFinish;
-    TextView mTvTitle;
+    private LinearLayout mllRoot;
+    private RelativeLayout mRlFinish;
+    private RelativeLayout mRlTop;
+    private TextView mTopTitle;
     private String url;
     private String title;
-    private AgentWeb mAgentWeb;
-    private WebView webView;
-    private AndroidInterface androidInterface;
+
+
+    private ValueCallback<Uri[]> mValueListCallback;
+    public static final  int CHOOSE_PHOTO=10001;
+    public static final  int CANAME_PHOTO=10002;
     @Override
     protected ComWebViewPresenter createPresenter() {
-        return null;
+        return new ComWebViewPresenter();
     }
     @Override
     protected int getLayoutId() {
@@ -45,19 +49,12 @@ public class ComWebViewActivity extends BaseMvpActivity<ComWebViewPresenter> imp
     protected void initView() {
         mllRoot=findViewById(R.id.ll_root);
         mRlFinish=findViewById(R.id.re_top_finish);
-        mTvTitle=findViewById(R.id.tv_top_title);
-
-        url="file:///android_asset/index.html";
+        mTopTitle=findViewById(R.id.tv_top_title);
+        mRlTop=findViewById(R.id.rl_top);
+        url=getIntent().getStringExtra("url");
         title=getIntent().getStringExtra("title");
-
-//        if(!TextUtils.isEmpty(title)){
-//            mRlTop.setVisibility(View.VISIBLE);
-//            mTopTitle.setText(title);
-//        }else{
-//            mRlTop.setVisibility(View.VISIBLE);
-//        }
+        mRlTop.setVisibility(View.VISIBLE);
     }
-
 
     @Override
     public void initStatusBar() {
@@ -71,38 +68,35 @@ public class ComWebViewActivity extends BaseMvpActivity<ComWebViewPresenter> imp
 
     @Override
     protected void initData() {
-        mAgentWeb = AgentWeb.with(this)
-                .setAgentWebParent(mllRoot, new LinearLayout.LayoutParams(-1, -1))
-                .closeIndicator()
-                .setWebChromeClient(mWebChromeClient)
-                .setWebViewClient(mWebViewClient)
-                .setSecurityType(AgentWeb.SecurityType.STRICT_CHECK)
-                .createAgentWeb()
-                .ready()
-                .go(url);
-
-        webView = mAgentWeb.getWebCreator().getWebView();
-        webView.getSettings().setJavaScriptEnabled(true);
-        webView.getSettings().setDomStorageEnabled(true);
-        webView.getSettings().setAllowFileAccess(true);
-        webView.getSettings().setAllowContentAccess(true);
-        webView.getSettings().setAllowUniversalAccessFromFileURLs(true);
-        webView.getSettings().setAppCacheEnabled(true);
-        // 设置允许JS弹窗
-        webView.getSettings().setJavaScriptCanOpenWindowsAutomatically(true);
-
-        androidInterface = new AndroidInterface(mAgentWeb, this);
-        mAgentWeb.getJsInterfaceHolder().addJavaObject("android", androidInterface);
-
+        mPresenter.initData(this,mllRoot,url);
     }
 
-
-    private WebViewClient mWebViewClient = new WebViewClient() {
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()){
+            case R.id.re_top_finish :
+                onBackPressed();
+                break;
+        }
+    }
+    @Override
+    public void onBackPressed() {
+        if (mPresenter.getWebView().canGoBack()) {
+            mPresenter.getWebView().goBack();
+        } else {
+            finish();
+        }
+    }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        mPresenter.handleActivity(mValueListCallback,requestCode,data);
+    }
+    public WebViewClient mWebViewClient = new WebViewClient() {
         @Override
         public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
             Log.e("----","shouldOverrideUrlLoading:"+request.getUrl());
             return false;
-
         }
 
         //页面加载开始
@@ -118,30 +112,43 @@ public class ComWebViewActivity extends BaseMvpActivity<ComWebViewPresenter> imp
             Log.e("----","onPageFinished:"+url);
         }
     };
-    private WebChromeClient mWebChromeClient = new WebChromeClient() {
+    public WebChromeClient mWebChromeClient = new WebChromeClient() {
         @Override
         public void onProgressChanged(WebView view, int newProgress) {
-
         }
-
         @Override
         public void onReceivedTitle(WebView view, String title) {
             super.onReceivedTitle(view, title);
+            mTopTitle.setText(title);
         }
-
+        // For Android >= 5.0
         @Override
         public boolean onShowFileChooser(WebView webView, ValueCallback<Uri[]> filePathCallback, FileChooserParams fileChooserParams) {
+            mValueListCallback = filePathCallback;
+            mPresenter.choosePhoto(ComWebViewActivity.this);
             return true;
         }
-
     };
 
     @Override
-    public void onClick(View view) {
-        switch (view.getId()){
-            case R.id.re_top_finish :
-                finish();
-                break;
-        }
+    public void setmValueListCallbackNull() {
+        mValueListCallback=null;
+    }
+    @Override
+    protected void onPause() {
+        mPresenter.getmAgentWeb().getWebLifeCycle().onPause();
+        super.onPause();
+
+    }
+    @Override
+    protected void onResume() {
+        mPresenter.getmAgentWeb().getWebLifeCycle().onResume();
+        super.onResume();
+    }
+    @Override
+    protected void onDestroy() {
+        AgentWebConfig.clearDiskCache(this);
+        mPresenter.getmAgentWeb().getWebLifeCycle().onDestroy();
+        super.onDestroy();
     }
 }

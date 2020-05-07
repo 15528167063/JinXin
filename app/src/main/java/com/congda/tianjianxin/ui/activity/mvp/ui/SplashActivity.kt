@@ -6,6 +6,7 @@ import com.congda.baselibrary.base.BaseMvpActivity
 import com.congda.baselibrary.net.BaseHttpResult
 import com.congda.baselibrary.utils.IMCutTimeDownView
 import com.congda.baselibrary.utils.IMPreferenceUtil
+import com.congda.baselibrary.utils.IMStatusBarUtil
 import com.congda.baselibrary.utils.glide.IMImageLoadUtil
 import com.congda.tianjianxin.R
 import com.congda.tianjianxin.ui.activity.GuideActivity
@@ -32,6 +33,9 @@ class SplashActivity : BaseMvpActivity<SplashPresenter>(), SplashContract.View, 
         mPresenter.getSplashData()
     }
 
+    override fun initStatusBar() {
+        IMStatusBarUtil.setTranslucentForImageView(this, 0, null)
+    }
     /**
      * 判断是不是第一次进去app
      */

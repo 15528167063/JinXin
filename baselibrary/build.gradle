@@ -60,6 +60,7 @@ dependencies {
     api 'pub.devrel:easypermissions:3.0.0'
     //知乎选择头像
     api 'com.zhihu.android:matisse:0.5.3-beta3'
+    api 'com.github.donkingliang:ImageSelector:2.1.1'
     // 查看大图
     api 'com.github.SherlockGougou:BigImageViewPager:androidx-6.0.1'
     // 信息更新
