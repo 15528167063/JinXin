@@ -53,7 +53,7 @@ class SplashActivity : BaseMvpActivity<SplashPresenter>(), SplashContract.View, 
     }
 
     override fun setSplashData(result: BaseHttpResult<List<SplashAdBean>>?) {
-        skipTv.setTotalTime(5000)
+        skipTv.setTotalTime(3000)
         if(result==null){
             return
         }

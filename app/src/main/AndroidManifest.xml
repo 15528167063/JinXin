@@ -46,7 +46,10 @@
             tools:ignore="LockedOrientationActivity" />
 
         <activity android:name=".ui.activity.ComWebActivity" />
+
         <activity android:name=".ui.activity.mvp.ui.ComWebViewActivity" />
+
+        <activity android:name=".ui.activity.mvp.ui.DemoActivity"/>
         <activity
             android:name="com.donkingliang.imageselector.PreviewActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"
