@@ -2,7 +2,9 @@ package com.congda.tianjianxin.ui.fragment.mvp.ui
 
 import android.os.Bundle
 import android.view.View
+import com.congda.baselibrary.app.IMSConfig
 import com.congda.baselibrary.base.BaseMvpFragment
+import com.congda.baselibrary.utils.IMSavePhotoUtil
 import com.congda.baselibrary.utils.glide.IMImageLoadUtil
 import com.congda.baselibrary.widget.dialog.IMIosCommonDiglog
 import com.congda.baselibrary.widget.dialog.IMSheetViewDialog
@@ -13,6 +15,7 @@ import com.congda.tianjianxin.ui.fragment.mvp.contract.FirstContract
 import com.congda.tianjianxin.ui.fragment.mvp.presenter.FirstPresenter
 import kotlinx.android.synthetic.main.fragment_first.*
 import kotlinx.android.synthetic.main.layout_common_title.*
+import java.io.File
 
 class FirstFragment : BaseMvpFragment<FirstPresenter>(), View.OnClickListener, IMSheetViewDialog.Callback ,FirstContract.View{
     override fun getLayoutId(): Int {
@@ -69,9 +72,11 @@ class FirstFragment : BaseMvpFragment<FirstPresenter>(), View.OnClickListener, I
                 activity?.let { mPresenter.showBigImageView(it) }
             }
             R.id.btn6 -> {
-                var bundle=Bundle();
-                bundle.putString("url","http://baidu.com");
-                startActivity(ComWebViewActivity::class.java,bundle,false)
+//                var bundle=Bundle();
+//////                bundle.putString("url","http://baidu.com");
+//////                startActivity(ComWebViewActivity::class.java,bundle,false)
+                    IMSavePhotoUtil.saveDrawableIcon(R.mipmap.app_logo,"app_logo")
+
             }
             R.id.iv1 -> {
                 activity?.let { mPresenter.showSheetView(it) }

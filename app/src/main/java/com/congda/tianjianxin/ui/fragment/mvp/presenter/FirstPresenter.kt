@@ -9,6 +9,7 @@ import cc.shinichi.library.ImagePreview
 import cc.shinichi.library.bean.ImageInfo
 import cc.shinichi.library.view.listener.OnBigImagePageChangeListener
 import com.congda.baselibrary.mvp.BasePresenter
+import com.congda.baselibrary.utils.IMSavePhotoUtil
 import com.congda.baselibrary.utils.IMSavePictureUtils
 import com.congda.baselibrary.utils.glide.IMChooseUtils
 import com.congda.baselibrary.widget.dialog.IMSheetDialog
@@ -78,7 +79,9 @@ class FirstPresenter : BasePresenter<FirstContract.Model, FirstContract.View>(),
             .addSheet("保存图片") { dialog : DialogInterface, which :Int ->
                 dialog.dismiss()
                 ImagePreview.getInstance().setFolderName("JinXin")
-                IMSavePictureUtils.downloadPicture(activity, imageInfoList.get(i).getOriginUrl())
+//                IMSavePictureUtils.downloadPicture(activity, imageInfoList.get(i).getOriginUrl())
+
+                IMSavePhotoUtil.saveUrlToPhoto(activity,imageInfoList.get(i).getOriginUrl(),null);
             }
             .addSheet("分享好友") { dialog : DialogInterface, which :Int ->
                 dialog.dismiss()
