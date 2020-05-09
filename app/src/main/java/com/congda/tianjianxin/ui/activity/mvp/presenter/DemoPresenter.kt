@@ -21,19 +21,25 @@ class DemoPresenter : BasePresenter<DemoContract.Model, DemoContract.View>(),
     override fun createModel(): DemoContract.Model {
         return DemoModel()
     }
+
+    /**
+     * 底部sheet
+     */
     fun showSheetView(context: Context) {
         IMSheetDialog.Builder(context)
-            .addSheet("拍照", DialogInterface.OnClickListener { dialog, which ->
+            .addSheet("哈哈哈", DialogInterface.OnClickListener { dialog, which ->
                 dialog.dismiss()
-                view.showToast("拍照")
+                view.showToast("哈哈哈")
             })
-            .addSheet("选择图片", DialogInterface.OnClickListener { dialog, which ->
+            .addSheet("嘿嘿嘿", DialogInterface.OnClickListener { dialog, which ->
                 dialog.dismiss()
-                IMChooseUtils.choosePhotoForResult(context,10001,9)
+                view.showToast("嘿嘿嘿")
             })
             .create().show()
     }
-
+    /**
+     * 图片浏览
+     */
     fun showBigImageView(context: FragmentActivity) {
         val imageInfoList: MutableList<ImageInfo> = mutableListOf();
         var imageInfo = ImageInfo()
@@ -77,9 +83,6 @@ class DemoPresenter : BasePresenter<DemoContract.Model, DemoContract.View>(),
         IMSheetDialog.Builder(activity)
             .addSheet("保存图片") { dialog : DialogInterface, which :Int ->
                 dialog.dismiss()
-                ImagePreview.getInstance().setFolderName("JinXin")
-//                IMSavePictureUtils.downloadPicture(activity, imageInfoList.get(i).getOriginUrl())
-
                 IMSavePhotoUtil.saveUrlToPhoto(activity,imageInfoList.get(i).getOriginUrl(),null);
             }
             .addSheet("分享好友") { dialog : DialogInterface, which :Int ->
@@ -87,6 +90,9 @@ class DemoPresenter : BasePresenter<DemoContract.Model, DemoContract.View>(),
             }.create().show();
     }
 
+    /**
+     * 图片浏览器滑动监听
+     */
     override fun onPageScrollStateChanged(state: Int) {
     }
 

@@ -13,14 +13,14 @@ public class ActivityUtils {
 
     public static void next(Activity activity, Class<?> cls) {
         activity.startActivity(new Intent(activity, cls));
-        activity.overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+        activity.overridePendingTransition(R.anim.anim_in_from_right, R.anim.fade_out);
     }
 
     public static void next(Activity activity, Class<?> cls, Bundle extras, boolean isFinish) {
         Intent intent = new Intent(activity, cls);
         intent.putExtras(extras);
         activity.startActivity(intent);
-        activity.overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+        activity.overridePendingTransition(R.anim.anim_in_from_right, R.anim.fade_out);
         if (isFinish) {
             activity.finish();
         }
