@@ -7,7 +7,7 @@ import com.bigkoo.pickerview.view.TimePickerView
 import com.congda.baselibrary.app.IMSConfig
 import com.congda.baselibrary.base.BaseMvpActivity
 import com.congda.baselibrary.utils.IMSavePhotoUtil
-import com.congda.baselibrary.utils.TimePickerUtils
+import com.congda.baselibrary.utils.IMTimePickerUtils
 import com.congda.baselibrary.widget.dialog.IMIosCommonDiglog
 import com.congda.baselibrary.widget.dialog.IMSheetViewDialog
 import com.congda.tianjianxin.R
@@ -16,6 +16,7 @@ import com.congda.tianjianxin.ui.activity.mvp.presenter.DemoPresenter
 import kotlinx.android.synthetic.main.activity_demo.*
 import kotlinx.android.synthetic.main.layout_common_title.*
 import java.io.File
+import java.util.*
 
 
 class DemoActivity : BaseMvpActivity<DemoPresenter>(), DemoContract.View, View.OnClickListener, IMSheetViewDialog.Callback {
@@ -34,8 +35,13 @@ class DemoActivity : BaseMvpActivity<DemoPresenter>(), DemoContract.View, View.O
     override fun initView() {
         tv_top_title.text="Demo界面"
         //初始化时间选择器
-        pvTime= TimePickerUtils.getPickView(this);
-        pvOptions= TimePickerUtils.getOptionsPickerView(this);
+        pvTime= IMTimePickerUtils.getPickView(this);
+        //初始化内容联动
+        val food: MutableList<String> = ArrayList()
+        food.add("A")
+        food.add("B")
+        food.add("C")
+        pvOptions= IMTimePickerUtils.getOptionsPickerView(this,food);
     }
     override fun initListener() {
         iv1.setOnClickListener(this)
@@ -48,6 +54,7 @@ class DemoActivity : BaseMvpActivity<DemoPresenter>(), DemoContract.View, View.O
         btn7.setOnClickListener(this)
         btn8.setOnClickListener(this)
         btn9.setOnClickListener(this)
+        btn10.setOnClickListener(this)
     }
 
     override fun onClick(p0: View?) {
@@ -78,6 +85,9 @@ class DemoActivity : BaseMvpActivity<DemoPresenter>(), DemoContract.View, View.O
             }
             R.id.btn9 -> {
                 btn9OnClick()
+            }
+            R.id.btn10 -> {
+                btn10OnClick()
             }
             R.id.iv1 -> {
                 mPresenter.showSheetView(this)
@@ -131,7 +141,10 @@ class DemoActivity : BaseMvpActivity<DemoPresenter>(), DemoContract.View, View.O
         pvTime.show(btn8)
     }
     private fun btn9OnClick() {
-        pvOptions.show() //弹出条件选择器
+        pvOptions.show()
+    }
+    private fun btn10OnClick() {
+       IMTimePickerUtils.initJsonData(this);
     }
     /**
      * btn2_SheetView内部点击时间
