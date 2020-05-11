@@ -127,8 +127,6 @@ class DemoActivity : BaseMvpActivity<DemoPresenter>(), DemoContract.View, View.O
         val diglog = IMIosCommonDiglog(this)
         diglog.showCommonDiglog("测试测试 心情好"){
             showToast("测试测试 心情好")
-            diglog.dismissCommonDiglog()
-
         }
     }
 
@@ -156,7 +154,7 @@ class DemoActivity : BaseMvpActivity<DemoPresenter>(), DemoContract.View, View.O
         pvOptions.show()
     }
     private fun btn10OnClick() {
-       IMTimePickerUtils.initJsonData(this);
+        IMTimePickerUtils.initJsonData(this);
     }
     private fun btn11OnClick() {
         startActivity(RecycleDemoActivity::class.java,false)

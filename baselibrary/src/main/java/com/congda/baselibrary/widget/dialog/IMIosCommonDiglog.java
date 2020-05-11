@@ -24,6 +24,7 @@ public class IMIosCommonDiglog {
     public IMIosCommonDiglog(Context context) {
         this.context=context;
     }
+
     public void showCommonDiglog(String content, View.OnClickListener listener) {
         AlertDialog.Builder builder=new AlertDialog.Builder(context);
         builder.setCancelable(false);
@@ -35,44 +36,13 @@ public class IMIosCommonDiglog {
         if(!TextUtils.isEmpty(content)){
             mTvContent.setText(content);
         }
-        mTvSure.setOnClickListener(listener);
-//        mTvSure.setOnTouchListener(new View.OnTouchListener() {
-//            @Override
-//            public boolean onTouch(View view, MotionEvent motionEvent) {
-//                shareDialog.dismiss();
-//                return true;
-//            }
-//        });
-        mTvCancle.setOnClickListener(new View.OnClickListener() {
+        mTvSure.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 shareDialog.dismiss();
+                listener.onClick(mTvSure);
             }
         });
-        builder.setView(dialogView);
-        shareDialog =  builder.show();
-        Window window = shareDialog.getWindow();
-        window.setWindowAnimations(R.style.ActionSheetDialogAnimations);  //添加动画
-        WindowManager.LayoutParams params = window.getAttributes();
-
-        params.width = IMDensityUtil.getScreenWidth(context)- IMDensityUtil.dip2px(context,70);
-        shareDialog.getWindow().setAttributes(params);
-        shareDialog.getWindow().setBackgroundDrawable(context.getResources().getDrawable(R.drawable.im_shape_bg_white_c12));
-    }
-    public void showCommonDiglog(String content, View.OnClickListener ensurelistener, View.OnClickListener canclelistener) {
-        AlertDialog.Builder builder=new AlertDialog.Builder(context);
-        builder.setCancelable(false);
-        final View dialogView =  View.inflate(context, R.layout.layout_dialog_common, null);
-        mTvTitle = dialogView.findViewById(R.id.im_tv_title);
-        mTvContent = dialogView.findViewById(R.id.im_tv_content);
-        mTvCancle = dialogView.findViewById(R.id.tv_cancle);
-        mTvSure = dialogView.findViewById(R.id.tv_ensure);
-        if(!TextUtils.isEmpty(content)){
-            mTvContent.setText(content);
-        }
-        mTvSure.setOnClickListener(ensurelistener);
-        mTvCancle.setOnClickListener(canclelistener);
         mTvCancle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -88,34 +58,6 @@ public class IMIosCommonDiglog {
         params.width = IMDensityUtil.getScreenWidth(context)- IMDensityUtil.dip2px(context,70);
         shareDialog.getWindow().setAttributes(params);
         shareDialog.getWindow().setBackgroundDrawable(context.getResources().getDrawable(R.drawable.im_shape_bg_white_c12));
-    }
-    public void showCommonDiglog(String title,String content, View.OnClickListener listener1,View.OnClickListener listener2) {
-        AlertDialog.Builder builder=new AlertDialog.Builder(context);
-        final View dialogView =  View.inflate(context, R.layout.layout_dialog_common, null);
-        mTvTitle = dialogView.findViewById(R.id.im_tv_title);
-        mTvContent = dialogView.findViewById(R.id.im_tv_content);
-        mTvCancle = dialogView.findViewById(R.id.tv_cancle);
-        mTvSure = dialogView.findViewById(R.id.tv_ensure);
-        mTvSure.setOnClickListener(listener1);
-        mTvCancle.setOnClickListener(listener2);
-        if(!TextUtils.isEmpty(title)){
-            mTvTitle.setText(title);
-        }
-        if(!TextUtils.isEmpty(content)){
-            mTvContent.setText(content);
-        }
-
-        builder.setView(dialogView);
-        shareDialog =  builder.show();
-
-        Window window = shareDialog.getWindow();
-        window.setWindowAnimations(R.style.ActionSheetDialogAnimations);  //添加动画
-        WindowManager.LayoutParams params = window.getAttributes();
-
-        params.width = IMDensityUtil.getScreenWidth(context)- IMDensityUtil.dip2px(context,70);
-        shareDialog.getWindow().setAttributes(params);
-        shareDialog.getWindow().setBackgroundDrawable(context.getResources().getDrawable(R.drawable.im_shape_bg_white_c12));
-//        shareDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);  背景灰色透明
     }
 
     public void showSingleCommonDiglog(String content, View.OnClickListener listener) {
@@ -133,11 +75,11 @@ public class IMIosCommonDiglog {
         if(!TextUtils.isEmpty(content)){
             mTvContent.setText(content);
         }
-        mTvSure.setOnClickListener(listener);
-        mTvCancle.setOnClickListener(new View.OnClickListener() {
+        mTvSure.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View view) {
                 shareDialog.dismiss();
+                listener.onClick(mTvSure);
             }
         });
         builder.setView(dialogView);
@@ -192,4 +134,5 @@ public class IMIosCommonDiglog {
             shareDialog.dismiss();
         }
     }
+
 }
