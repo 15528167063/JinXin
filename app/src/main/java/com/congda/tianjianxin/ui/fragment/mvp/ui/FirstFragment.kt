@@ -2,21 +2,13 @@ package com.congda.tianjianxin.ui.fragment.mvp.ui
 
 import android.os.Bundle
 import android.view.View
-import com.congda.baselibrary.app.IMSConfig
 import com.congda.baselibrary.base.BaseMvpFragment
-import com.congda.baselibrary.utils.IMSavePhotoUtil
-import com.congda.baselibrary.utils.glide.IMImageLoadUtil
-import com.congda.baselibrary.widget.dialog.IMIosCommonDiglog
-import com.congda.baselibrary.widget.dialog.IMSheetViewDialog
 import com.congda.tianjianxin.R
-import com.congda.tianjianxin.ui.activity.ComWebActivity
 import com.congda.tianjianxin.ui.activity.mvp.ui.ComWebViewActivity
 import com.congda.tianjianxin.ui.activity.mvp.ui.DemoActivity
 import com.congda.tianjianxin.ui.fragment.mvp.contract.FirstContract
 import com.congda.tianjianxin.ui.fragment.mvp.presenter.FirstPresenter
 import kotlinx.android.synthetic.main.fragment_first.*
-import kotlinx.android.synthetic.main.layout_common_title.*
-import java.io.File
 
 class FirstFragment : BaseMvpFragment<FirstPresenter>(), View.OnClickListener,FirstContract.View{
     override fun getLayoutId(): Int {
@@ -28,7 +20,9 @@ class FirstFragment : BaseMvpFragment<FirstPresenter>(), View.OnClickListener,Fi
     }
 
     override fun initView() {
-        tv_top_title.text="首页"
+        common_top.setTopTitle("首页")
+        common_top.setTopLeftGone()
+        common_top.setTopViewVisiable()
     }
 
     override fun initListener() {

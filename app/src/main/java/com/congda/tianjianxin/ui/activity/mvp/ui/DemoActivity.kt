@@ -14,7 +14,6 @@ import com.congda.tianjianxin.R
 import com.congda.tianjianxin.ui.activity.mvp.contract.DemoContract
 import com.congda.tianjianxin.ui.activity.mvp.presenter.DemoPresenter
 import kotlinx.android.synthetic.main.activity_demo.*
-import kotlinx.android.synthetic.main.layout_common_title.*
 import java.io.File
 import java.util.*
 
@@ -33,7 +32,15 @@ class DemoActivity : BaseMvpActivity<DemoPresenter>(), DemoContract.View, View.O
     }
 
     override fun initView() {
-        tv_top_title.text="Demo界面"
+        common_top.setTopTitle("Demo界面")
+        common_top.setTopRightText("保存")
+        common_top.setOnClickLeftListener{
+            showMessage("finish")
+        }
+        common_top.setOnClickRightListener {
+            showMessage("保存")
+        }
+
         //初始化时间选择器
         pvTime= IMTimePickerUtils.getPickView(this);
         //初始化内容联动
@@ -55,6 +62,7 @@ class DemoActivity : BaseMvpActivity<DemoPresenter>(), DemoContract.View, View.O
         btn8.setOnClickListener(this)
         btn9.setOnClickListener(this)
         btn10.setOnClickListener(this)
+        btn11.setOnClickListener(this)
     }
 
     override fun onClick(p0: View?) {
@@ -89,11 +97,15 @@ class DemoActivity : BaseMvpActivity<DemoPresenter>(), DemoContract.View, View.O
             R.id.btn10 -> {
                 btn10OnClick()
             }
+            R.id.btn11->{
+                btn11OnClick()
+            }
             R.id.iv1 -> {
                 mPresenter.showSheetView(this)
             }
         }
     }
+
 
     /**
      * 点击处理
@@ -146,6 +158,10 @@ class DemoActivity : BaseMvpActivity<DemoPresenter>(), DemoContract.View, View.O
     private fun btn10OnClick() {
        IMTimePickerUtils.initJsonData(this);
     }
+    private fun btn11OnClick() {
+        startActivity(RecycleDemoActivity::class.java,false)
+    }
+
     /**
      * btn2_SheetView内部点击时间
      */

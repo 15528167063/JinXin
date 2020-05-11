@@ -8,13 +8,12 @@ import com.congda.baselibrary.utils.IMStatusBarUtil
 import com.congda.tianjianxin.R
 import com.just.agentweb.AgentWeb
 import kotlinx.android.synthetic.main.activity_common_web.*
-import kotlinx.android.synthetic.main.layout_common_title.*
 
 /**
  * Created by Wolf on 2019/11/30.
  * Describe:通用webView
  */
-class ComWebActivity : BaseActivity(), View.OnClickListener {
+class ComWebActivity : BaseActivity() {
 
     lateinit var url   :   String
     lateinit var title :    String
@@ -35,13 +34,10 @@ class ComWebActivity : BaseActivity(), View.OnClickListener {
             return
         }
         if(!TextUtils.isEmpty(title)){
-            tv_top_title.text = title
+            common_top.setTopTitle(title)
         }
     }
 
-    override fun initListener() {
-        re_top_finish.setOnClickListener(this)
-    }
 
     override fun initData() {
         mAgentWeb = AgentWeb.with(this)
@@ -50,14 +46,6 @@ class ComWebActivity : BaseActivity(), View.OnClickListener {
             .createAgentWeb()
             .ready()
             .go(url)
-    }
-
-    override fun onClick(p0: View?) {
-        when(p0?.id){
-            R.id.re_top_finish->{
-                finish()
-            }
-        }
     }
 
 
@@ -75,4 +63,8 @@ class ComWebActivity : BaseActivity(), View.OnClickListener {
         mAgentWeb.getWebLifeCycle().onDestroy()
         super.onDestroy()
     }
+
+    override fun initListener() {
+    }
+
 }

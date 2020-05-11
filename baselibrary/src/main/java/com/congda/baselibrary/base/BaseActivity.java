@@ -59,7 +59,9 @@ public abstract class BaseActivity extends BaseSwipeBackActivity implements Easy
      * 默认状态栏白底黑字
      */
     public void initStatusBar() {
-        IMStatusBarUtil.setColor(this, getResources().getColor(R.color.title_color_f5f5f5),0);
+//        IMStatusBarUtil.setColor(this, getResources().getColor(R.color.title_color_f5f5f5),0);
+//        IMStatusBarUtil.setLightMode(this);
+        IMStatusBarUtil.setTranslucent(this, 0);
         IMStatusBarUtil.setLightMode(this);
     }
     /**

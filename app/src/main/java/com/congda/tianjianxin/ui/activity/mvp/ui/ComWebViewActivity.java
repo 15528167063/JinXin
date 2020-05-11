@@ -57,11 +57,6 @@ public class ComWebViewActivity extends BaseMvpActivity<ComWebViewPresenter> imp
     }
 
     @Override
-    public void initStatusBar() {
-        IMStatusBarUtil.setTranslucent(this, 0);
-        IMStatusBarUtil.setLightMode(this);
-    }
-    @Override
     protected void initListener() {
         mRlFinish.setOnClickListener(this);
     }

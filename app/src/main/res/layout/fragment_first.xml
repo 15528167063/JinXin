@@ -4,10 +4,10 @@
     android:layout_height="match_parent"
     android:background="@color/color_f5f5f5"
     android:orientation="vertical">
-    <View
+    <com.congda.baselibrary.widget.CommonTitleView
+        android:id="@+id/common_top"
         android:layout_width="match_parent"
-        android:layout_height="15dp"/>
-    <include layout="@layout/layout_common_title"/>
+        android:layout_height="wrap_content"/>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
