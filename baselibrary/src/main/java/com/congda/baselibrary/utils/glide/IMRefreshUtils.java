@@ -1,5 +1,11 @@
 package com.congda.baselibrary.utils.glide;
 
+import android.content.Context;
+
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.congda.baselibrary.adapter.baseadapter.IMBaseRecycleViewAdapter_T;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
@@ -37,5 +43,14 @@ public class IMRefreshUtils {
         refreshLayout.setOnRefreshListener(listener1);
         refreshLayout.setOnLoadMoreListener(listener2);
         refreshLayout.setEnableOverScrollDrag(true);
+    }
+
+    /**
+     * 数值recyclerView
+     */
+    public static void initVRecycle(Context context,RecyclerView recyclerView) {
+        LinearLayoutManager linearLayoutManager=new LinearLayoutManager(context);
+        linearLayoutManager.setOrientation(RecyclerView.VERTICAL);
+        recyclerView.setLayoutManager(linearLayoutManager);
     }
 }

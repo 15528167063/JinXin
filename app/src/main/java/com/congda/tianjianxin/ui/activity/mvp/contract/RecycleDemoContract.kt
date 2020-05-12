@@ -8,7 +8,8 @@ import io.reactivex.Observable
 
 interface RecycleDemoContract {
     interface View : IView{
-        fun hanedBannerSucces(baseHttpResult: TypeOneBaseHttpResult<MutableList<BannerBean>>)
+        fun hanedBannerData(baseHttpResult: TypeOneBaseHttpResult<MutableList<BannerBean>>)
+        fun hanedListData(bean:MutableList<String>)
     }
 
     interface Model : IModel{

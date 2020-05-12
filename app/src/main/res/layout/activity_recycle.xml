@@ -19,16 +19,10 @@
             app:srlPrimaryColor="@color/color_05A9FE"
             app:srlEnablePreviewInEditMode="true"
             android:layout_height="match_parent">
-            <FrameLayout
-                android:id="@+id/ll_root"
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerView"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/recyclerView"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
-                <include layout="@layout/layout_recycle_empty"/>
-            </FrameLayout>
+                android:layout_height="match_parent" />
         </com.scwang.smartrefresh.layout.SmartRefreshLayout>
     </RelativeLayout>
 </LinearLayout>

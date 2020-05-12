@@ -1,5 +1,6 @@
 package com.congda.tianjianxin.ui.activity.mvp.presenter
 
+import com.bumptech.glide.load.data.ExifOrientationStream
 import com.congda.baselibrary.mvp.BasePresenter
 import com.congda.baselibrary.net.TypeOneBaseHttpResult
 import com.congda.baselibrary.net.TypeOneBaseObserve
@@ -27,12 +28,20 @@ class RecycleDemoPresenter : BasePresenter<RecycleDemoContract.Model, RecycleDem
                 }
 
                 override fun onSuccess(baseHttpResult: TypeOneBaseHttpResult<MutableList<BannerBean>>) {
-                    if(baseHttpResult==null){
+                    if(baseHttpResult?.data == null){
                         return
                     }
-                    view.hanedBannerSucces(baseHttpResult)
+                    view.hanedBannerData(baseHttpResult)
                 }
             })
+    }
+
+    fun getListData() {
+        var  list = mutableListOf<String>()
+        for (index in 0..10){
+            list.add("模拟数据$index")
+        }
+        view.hanedListData(list)
     }
 
 }
