@@ -27,6 +27,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:text="底部sheet"
+                android:textAllCaps="false"
                 android:id="@+id/btn2"/>
             <Button
                 android:layout_width="match_parent"
@@ -37,6 +38,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:text="dialog弹窗"
+                android:textAllCaps="false"
                 android:id="@+id/btn4"/>
             <Button
                 android:layout_width="match_parent"
@@ -72,7 +74,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:text="列表demo"
+                android:textAllCaps="false"
                 android:id="@+id/btn11"/>
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:text="bindService"
+                android:textAllCaps="false"
+                android:id="@+id/btn12"/>
             <ImageView
                 android:id="@+id/iv1"
                 android:layout_width="100dp"

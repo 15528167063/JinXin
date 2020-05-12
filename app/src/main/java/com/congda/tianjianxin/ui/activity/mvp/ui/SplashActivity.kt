@@ -1,9 +1,11 @@
 package com.congda.tianjianxin.ui.activity.mvp.ui
 
 import SplashAdBean
+import android.content.Intent
 import com.congda.baselibrary.app.IMSConfig
 import com.congda.baselibrary.base.BaseMvpActivity
 import com.congda.baselibrary.net.BaseHttpResult
+import com.congda.baselibrary.service.StartServiceDemo
 import com.congda.baselibrary.utils.IMCutTimeDownView
 import com.congda.baselibrary.utils.IMPreferenceUtil
 import com.congda.baselibrary.utils.IMStatusBarUtil
@@ -26,6 +28,10 @@ class SplashActivity : BaseMvpActivity<SplashPresenter>(), SplashContract.View, 
     }
 
     override fun initData() {
+        //开启监听网络的服务，处理一开始不开网进去app的情况
+        val intent = Intent(this, StartServiceDemo::class.java)
+        startService(intent)
+
         if(isFirstOpen()){
             return
         }

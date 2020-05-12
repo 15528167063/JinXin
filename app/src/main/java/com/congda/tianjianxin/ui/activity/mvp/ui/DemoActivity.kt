@@ -1,11 +1,18 @@
 package com.congda.tianjianxin.ui.activity.mvp.ui
 
+import android.content.ComponentName
+import android.content.Context
+import android.content.Intent
+import android.content.ServiceConnection
 import android.os.Bundle
+import android.os.IBinder
 import android.view.View
 import com.bigkoo.pickerview.view.OptionsPickerView
 import com.bigkoo.pickerview.view.TimePickerView
+import com.congda.baselibrary.app.BaseApplication
 import com.congda.baselibrary.app.IMSConfig
 import com.congda.baselibrary.base.BaseMvpActivity
+import com.congda.baselibrary.service.BindServiceDemo
 import com.congda.baselibrary.utils.IMSavePhotoUtil
 import com.congda.baselibrary.utils.IMTimePickerUtils
 import com.congda.baselibrary.widget.dialog.IMIosCommonDiglog
@@ -21,6 +28,11 @@ import java.util.*
 class DemoActivity : BaseMvpActivity<DemoPresenter>(), DemoContract.View, View.OnClickListener, IMSheetViewDialog.Callback {
     lateinit  var pvTime: TimePickerView
     lateinit  var pvOptions: OptionsPickerView<Any>
+
+    lateinit var mServiceDemo: BindServiceDemo
+    lateinit var mConn: ServiceConnection
+    private var isBind : Boolean=false
+
     override fun getLayoutId(): Int {
         return R.layout.activity_demo
     }
@@ -63,6 +75,7 @@ class DemoActivity : BaseMvpActivity<DemoPresenter>(), DemoContract.View, View.O
         btn9.setOnClickListener(this)
         btn10.setOnClickListener(this)
         btn11.setOnClickListener(this)
+        btn12.setOnClickListener(this)
     }
 
     override fun onClick(p0: View?) {
@@ -99,6 +112,9 @@ class DemoActivity : BaseMvpActivity<DemoPresenter>(), DemoContract.View, View.O
             }
             R.id.btn11->{
                 btn11OnClick()
+            }
+            R.id.btn12->{
+                btn12OnClick()
             }
             R.id.iv1 -> {
                 mPresenter.showSheetView(this)
@@ -158,6 +174,36 @@ class DemoActivity : BaseMvpActivity<DemoPresenter>(), DemoContract.View, View.O
     }
     private fun btn11OnClick() {
         startActivity(RecycleDemoActivity::class.java,false)
+    }
+    private fun btn12OnClick() {
+        val intent = Intent(this, BindServiceDemo::class.java)
+        mConn = object : ServiceConnection {
+            override fun onServiceConnected(name: ComponentName, service: IBinder) {
+                val bind: BindServiceDemo.MyBind = service as BindServiceDemo.MyBind
+                mServiceDemo = bind.getService()
+            }
+
+            override fun onServiceDisconnected(name: ComponentName) {}
+        }
+        isBind = bindService(intent, mConn, Context.BIND_AUTO_CREATE)
+    }
+
+    override fun onDestroy() {
+        stopService()
+        super.onDestroy()
+    }
+
+    /**
+     * 关闭bind服务
+     */
+    private fun stopService() {
+        if (isBind) {
+            unbindService(mConn)
+            if (mServiceDemo != null) {
+                mServiceDemo.stopSelf()
+            }
+            isBind = false
+        }
     }
 
     /**
