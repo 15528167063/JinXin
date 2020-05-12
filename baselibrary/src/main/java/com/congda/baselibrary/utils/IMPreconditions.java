@@ -3,9 +3,9 @@ package com.congda.baselibrary.utils;
 
 import androidx.annotation.Nullable;
 
-public final class Preconditions {
+public final class IMPreconditions {
 
-    private Preconditions() {
+    private IMPreconditions() {
         throw new IllegalStateException("you can't instantiate me!");
     }
 

@@ -12,7 +12,6 @@ import android.util.Log;
  */
 public class BindServiceDemo extends Service implements Runnable{
     private Thread mThread;
-    private TimerThread mTimeThread;
     private  boolean isrunning=true;
     private final IBinder mBinder = new MyBind();
 
@@ -31,9 +30,7 @@ public class BindServiceDemo extends Service implements Runnable{
     public IBinder onBind(Intent intent) {
         if (mThread == null) {//如果线程为空 则创建一条
             mThread = new Thread(this);
-            mTimeThread = new TimerThread();  //開啟一條縣城 检测时间重连
             mThread.start();
-            mTimeThread.start();
         }
         return mBinder;
     }
@@ -71,13 +68,4 @@ public class BindServiceDemo extends Service implements Runnable{
             }
         }
     }
-
-    private class TimerThread extends Thread {
-        @Override
-        public void run() {
-
-        }
-    }
-
-
 }

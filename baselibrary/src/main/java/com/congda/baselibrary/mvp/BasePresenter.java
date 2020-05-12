@@ -2,7 +2,7 @@ package com.congda.baselibrary.mvp;
 
 import android.app.Activity;
 
-import com.congda.baselibrary.utils.Preconditions;
+import com.congda.baselibrary.utils.IMPreconditions;
 import com.trello.rxlifecycle2.LifecycleProvider;
 
 import io.reactivex.disposables.CompositeDisposable;
@@ -21,7 +21,7 @@ public abstract class BasePresenter<M extends IModel,V extends IView> implements
     private CompositeDisposable compositeDisposable;
 
     public V getView() {
-        Preconditions.checkNotNull(mView, "%s cannot be null", IView.class.getName());
+        IMPreconditions.checkNotNull(mView, "%s cannot be null", IView.class.getName());
         return mView;
     }
 
@@ -30,7 +30,7 @@ public abstract class BasePresenter<M extends IModel,V extends IView> implements
     }
 
     public M getModel() {
-        Preconditions.checkNotNull(mModel, "%s cannot be null", IModel.class.getName());
+        IMPreconditions.checkNotNull(mModel, "%s cannot be null", IModel.class.getName());
         return mModel;
     }
 

@@ -6,8 +6,9 @@ import java.io.File;
 
 public class IMSConfig {
 
-    public static final String BASE_URL="http://api-cs.clexin.com/tomato-app/";
+//    public static final String BASE_URL="http://api-cs.clexin.com/tomato-app/";
 
+    public static final String BASE_URL="https://www.wanandroid.com/";
     public static final String FIRST_OPEN = "first_open";
 
 

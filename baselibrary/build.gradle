@@ -73,4 +73,8 @@ dependencies {
     api 'com.contrarywind:Android-PickerView:4.1.9'
     //上拉下拉
     api 'com.scwang.smartrefresh:SmartRefreshLayout:1.1.2'
+    //banner
+    api 'com.youth.banner:banner:2.0.8'
+    //baseAdapter
+    api 'com.github.CymChad:BaseRecyclerViewAdapterHelper:3.0.0-beta2'
 }
