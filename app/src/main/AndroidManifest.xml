@@ -56,6 +56,11 @@
         <activity android:name=".ui.activity.RecycleDemoActivity"
             android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity"/>
+
+        <activity android:name=".ui.activity.SettingActivity"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity"/>
+
         <activity
             android:name="com.donkingliang.imageselector.PreviewActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"
@@ -68,6 +73,7 @@
             android:name="com.donkingliang.imageselector.ImageSelectorActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"
             android:configChanges="orientation|keyboardHidden|screenSize"/>
+
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="com.congda.tianjianxin.fileprovider"

@@ -17,4 +17,13 @@
         <attr name="tbn_text_color" format="color"/>
         <attr name="tbn_checked" format="boolean"/>
     </declare-styleable>
+
+    <declare-styleable name="SettingsOptionView">
+        <attr name="left_img" format="reference"/>
+        <attr name="text_content" format="reference|string"/>
+        <attr name="text_right" format="reference|string"/>
+        <attr name="is_Check" format="reference|boolean"/>
+        <attr name="is_show_line" format="reference|boolean"/>
+        <attr name="is_show_right_arr" format="reference|boolean"/>
+    </declare-styleable>
 </resources>

@@ -92,7 +92,7 @@ class ListFirstFragment : BaseMvpFragment<ListFirstPresenter>(),ListFirstContrac
         for (i in bean.data.indices) {
             imgs.add(bean.data[i].imagePath)
         }
-        BanneUtils.setBanner(banner,activity,imgs,this,null)
+        BanneUtils().setBanner(banner,activity,imgs,this)
     }
 
     override fun hanedListData(bean: MutableList<String>) {

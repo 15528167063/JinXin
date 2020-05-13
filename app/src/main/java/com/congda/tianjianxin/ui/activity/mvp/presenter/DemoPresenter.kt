@@ -14,6 +14,8 @@ import com.congda.baselibrary.utils.glide.IMChooseUtils
 import com.congda.baselibrary.widget.dialog.IMSheetDialog
 import com.congda.tianjianxin.ui.activity.mvp.contract.DemoContract
 import com.congda.tianjianxin.ui.activity.mvp.model.DemoModel
+import com.congda.tianjianxin.ui.activity.mvp.ui.ComWebViewActivity
+import com.donkingliang.imageselector.utils.ImageSelector
 
 class DemoPresenter : BasePresenter<DemoContract.Model, DemoContract.View>(),
     OnBigImagePageChangeListener {
@@ -21,19 +23,19 @@ class DemoPresenter : BasePresenter<DemoContract.Model, DemoContract.View>(),
     override fun createModel(): DemoContract.Model {
         return DemoModel()
     }
-
-    /**
-     * 底部sheet
-     */
     fun showSheetView(context: Context) {
         IMSheetDialog.Builder(context)
-            .addSheet("哈哈哈", DialogInterface.OnClickListener { dialog, which ->
+            .addSheet("拍照", DialogInterface.OnClickListener { dialog, which ->
                 dialog.dismiss()
-                view.showToast("哈哈哈")
+                ImageSelector.builder()
+                    .setCrop(true) // 设置是否使用图片剪切功能。
+                    .setCropRatio(1.0f) // 图片剪切的宽高比,默认1.0f。宽固定为手机屏幕的宽。
+                    .onlyTakePhoto(true) // 仅拍照，不打开相册
+                    .start(context as ComWebViewActivity,10002)
             })
-            .addSheet("嘿嘿嘿", DialogInterface.OnClickListener { dialog, which ->
+            .addSheet("选择图片", DialogInterface.OnClickListener { dialog, which ->
                 dialog.dismiss()
-                view.showToast("嘿嘿嘿")
+                IMChooseUtils.choosePhotoForResult(context,10001,9)
             })
             .create().show()
     }

@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/color_f5f5f5"
     android:orientation="vertical">
     <com.congda.baselibrary.widget.CommonTitleView
@@ -22,12 +23,8 @@
         <Button
             android:layout_width="match_parent"
             android:layout_height="60dp"
-            android:text="图片浏览"
+            android:text="我的设置"
+            android:layout_marginTop="10dp"
             android:id="@+id/btn2"/>
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:text="加载H5"
-            android:id="@+id/btn3"/>
     </LinearLayout>
 </LinearLayout>

@@ -19,8 +19,10 @@ import com.youth.banner.util.BannerUtils
  * 剑之所指，心之所向
  * @date 2020/5/12
  */
-object BanneUtils {
-    fun setBanner(banner: Banner<Any, ImageBannerAdapter>, context: Context?, imgs: List<String?>?, listener1: OnBannerListener<*>?, listener2: OnPageChangeListener?) {
+class BanneUtils {
+    constructor()
+
+    fun setBanner(banner: Banner<Any, ImageBannerAdapter>, context: Context?, imgs: List<String?>?, listener1: OnBannerListener<*>?) {
         banner.setAdapter(ImageBannerAdapter(imgs))
             //数字指示器
 //            .setIndicator(NumIndicator(context))
@@ -39,7 +41,7 @@ object BanneUtils {
             .setBannerGalleryEffect(18, 10)
             //添加透明效果(画廊配合透明效果更棒)
             .addPageTransformer(AlphaPageTransformer())
-            .addOnPageChangeListener(listener2!!)
+//            .addOnPageChangeListener(listener2!!)
             .start()
     }
 }

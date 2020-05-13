@@ -46,13 +46,9 @@ class DemoActivity : BaseMvpActivity<DemoPresenter>(), DemoContract.View, View.O
     override fun initView() {
         common_top.setTopTitle("Demo界面")
         common_top.setTopRightText("保存")
-        common_top.setOnClickLeftListener{
-            showMessage("finish")
-        }
         common_top.setOnClickRightListener {
             showMessage("保存")
         }
-
         //初始化时间选择器
         pvTime= IMTimePickerUtils.getPickView(this);
         //初始化内容联动
@@ -176,6 +172,7 @@ class DemoActivity : BaseMvpActivity<DemoPresenter>(), DemoContract.View, View.O
         startActivity(RecycleDemoActivity::class.java,false)
     }
     private fun btn12OnClick() {
+        showMessage("开启Service")
         val intent = Intent(this, BindServiceDemo::class.java)
         mConn = object : ServiceConnection {
             override fun onServiceConnected(name: ComponentName, service: IBinder) {
@@ -197,7 +194,9 @@ class DemoActivity : BaseMvpActivity<DemoPresenter>(), DemoContract.View, View.O
      * 关闭bind服务
      */
     private fun stopService() {
+
         if (isBind) {
+            showMessage("关闭Service")
             unbindService(mConn)
             if (mServiceDemo != null) {
                 mServiceDemo.stopSelf()
