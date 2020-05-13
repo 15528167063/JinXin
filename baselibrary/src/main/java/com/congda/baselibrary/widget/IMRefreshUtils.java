@@ -1,4 +1,4 @@
-package com.congda.baselibrary.utils.glide;
+package com.congda.baselibrary.widget;
 
 import android.content.Context;
 
@@ -20,17 +20,22 @@ public class IMRefreshUtils {
         refreshLayout.setEnablePureScrollMode(true);//是否启用纯滚动模式
         refreshLayout.setEnableOverScrollBounce(true);//是否启用越界回弹
         refreshLayout.setEnableOverScrollDrag(true);//是否启用越界拖动（仿苹果效果）1.0.4
+//        refreshLayout.setHeaderMaxDragRate(1);//最大显示下拉高度/Header标准高度
     }
 
     /**
      * 主要下拉刷新
      */
     public static void initRefresh(RefreshLayout refreshLayout, OnRefreshListener listener) {
+        refreshLayout.autoRefresh();//自动刷新
         refreshLayout.setEnableRefresh(true);//是否启用下拉刷新功能
         refreshLayout.setEnableLoadMore(false);//是否启用上拉加载功能
-        refreshLayout.setReboundDuration(100);
+        refreshLayout.setReboundDuration(1000);//回弹动画时长（毫秒）
         refreshLayout.setOnRefreshListener(listener);
         refreshLayout.setEnableOverScrollDrag(true);
+        refreshLayout.setHeaderMaxDragRate(1.2f);//最大显示下拉高度/Header标准高度
+        refreshLayout.setHeaderTriggerRate(1);//触发刷新距离 与 HeaderHeight 的比率1.0.4
+        refreshLayout.setEnableHeaderTranslationContent(true);//是否下拉Header的时候向下平移列表或者内容
     }
 
     /**
@@ -39,9 +44,11 @@ public class IMRefreshUtils {
     public static void initRefreshMore(RefreshLayout refreshLayout, OnRefreshListener listener1, OnLoadMoreListener listener2) {
         refreshLayout.setEnableRefresh(true);//是否启用下拉刷新功能
         refreshLayout.setEnableLoadMore(true);//是否启用上拉加载功能
-        refreshLayout.setReboundDuration(100);
+        refreshLayout.setReboundDuration(1000);
         refreshLayout.setOnRefreshListener(listener1);
         refreshLayout.setOnLoadMoreListener(listener2);
+        refreshLayout.setHeaderMaxDragRate(1.2f);//最大显示下拉高度/Header标准高度
+        refreshLayout.setHeaderTriggerRate(1);//触发刷新距离 与 HeaderHeight 的比率1.0.4
         refreshLayout.setEnableOverScrollDrag(true);
     }
 

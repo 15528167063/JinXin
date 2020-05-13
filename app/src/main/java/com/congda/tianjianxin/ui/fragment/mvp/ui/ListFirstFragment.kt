@@ -7,16 +7,14 @@ import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.listener.OnItemClickListener
 import com.congda.baselibrary.base.BaseMvpFragment
 import com.congda.baselibrary.net.TypeOneBaseHttpResult
-import com.congda.baselibrary.utils.glide.IMRefreshUtils
+import com.congda.baselibrary.widget.IMRefreshUtils
 import com.congda.tianjianxin.R
 import com.congda.tianjianxin.adapter.ImageBannerAdapter
 import com.congda.tianjianxin.adapter.RecycleDemodapter
 import com.congda.tianjianxin.bean.BannerBean
 import com.congda.tianjianxin.ui.activity.mvp.ui.ComWebViewActivity
 import com.congda.tianjianxin.ui.fragment.mvp.contract.ListFirstContract
-import com.congda.tianjianxin.ui.fragment.mvp.contract.SecondContract
 import com.congda.tianjianxin.ui.fragment.mvp.presenter.ListFirstPresenter
-import com.congda.tianjianxin.ui.fragment.mvp.presenter.SecondPresenter
 import com.congda.tianjianxin.widget.BanneUtils
 import com.scwang.smartrefresh.layout.api.RefreshLayout
 import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener
@@ -62,7 +60,6 @@ class ListFirstFragment : BaseMvpFragment<ListFirstPresenter>(),ListFirstContrac
 
     override fun initData() {
         common_top.setTopTitle("首页")
-        common_top.setTopViewVisiable()
         mPresenter.getBannerData()
         mPresenter.getListData()
     }
@@ -74,7 +71,7 @@ class ListFirstFragment : BaseMvpFragment<ListFirstPresenter>(),ListFirstContrac
      * 上拉刷新
      */
     override fun onRefresh(refreshLayout: RefreshLayout) {
-        refreshLayout.finishRefresh() //传入false表示刷新失败
+        refreshLayout.finishRefresh(2000)
 
     }
     override fun onLoadMore(refreshLayout: RefreshLayout) {
