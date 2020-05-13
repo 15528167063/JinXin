@@ -1,21 +1,21 @@
-package com.congda.tianjianxin.ui.activity.mvp.presenter
+package com.congda.tianjianxin.ui.fragment.mvp.presenter
 
-import com.bumptech.glide.load.data.ExifOrientationStream
 import com.congda.baselibrary.mvp.BasePresenter
 import com.congda.baselibrary.net.TypeOneBaseHttpResult
 import com.congda.baselibrary.net.TypeOneBaseObserve
 import com.congda.baselibrary.rx.RxSchedulers
 import com.congda.tianjianxin.bean.BannerBean
-import com.congda.tianjianxin.ui.activity.mvp.contract.RecycleDemoContract
-import com.congda.tianjianxin.ui.activity.mvp.model.RecycleDemoModel
+import com.congda.tianjianxin.ui.fragment.mvp.contract.ListFirstContract
+import com.congda.tianjianxin.ui.fragment.mvp.contract.SecondContract
+import com.congda.tianjianxin.ui.fragment.mvp.model.ListFirstModel
+import com.congda.tianjianxin.ui.fragment.mvp.model.SecondModel
 import com.trello.rxlifecycle2.android.ActivityEvent
 
-class RecycleDemoPresenter : BasePresenter<RecycleDemoContract.Model, RecycleDemoContract.View>(){
+class ListFirstPresenter : BasePresenter<ListFirstContract.Model, ListFirstContract.View>(){
 
-    override fun createModel(): RecycleDemoContract.Model {
-        return RecycleDemoModel()
+    override fun createModel(): ListFirstContract.Model {
+        return ListFirstModel()
     }
-
     /**
      * 获取banner
      */
@@ -38,13 +38,11 @@ class RecycleDemoPresenter : BasePresenter<RecycleDemoContract.Model, RecycleDem
 
     fun getListData() {
         var  list = mutableListOf<String>()
-        for (index in 0..10){
+        for (index in 0..30){
             list.add("模拟数据$index")
         }
         view.hanedListData(list)
     }
-
 }
-
 
 

@@ -10,10 +10,10 @@ import cc.shinichi.library.bean.ImageInfo
 import cc.shinichi.library.view.listener.OnBigImagePageChangeListener
 import com.congda.baselibrary.mvp.BasePresenter
 import com.congda.baselibrary.utils.IMSavePhotoUtil
-import com.congda.baselibrary.utils.IMSavePictureUtils
 import com.congda.baselibrary.utils.glide.IMChooseUtils
 import com.congda.baselibrary.widget.dialog.IMSheetDialog
 import com.congda.tianjianxin.ui.fragment.mvp.contract.FirstContract
+import com.congda.tianjianxin.ui.fragment.mvp.contract.ListFirstContract
 import com.congda.tianjianxin.ui.fragment.mvp.model.FirstModel
 
 class FirstPresenter : BasePresenter<FirstContract.Model, FirstContract.View>(),

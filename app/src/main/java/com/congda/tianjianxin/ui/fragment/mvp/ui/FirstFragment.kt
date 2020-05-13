@@ -7,10 +7,11 @@ import com.congda.tianjianxin.R
 import com.congda.tianjianxin.ui.activity.mvp.ui.ComWebViewActivity
 import com.congda.tianjianxin.ui.activity.mvp.ui.DemoActivity
 import com.congda.tianjianxin.ui.fragment.mvp.contract.FirstContract
+import com.congda.tianjianxin.ui.fragment.mvp.contract.ListFirstContract
 import com.congda.tianjianxin.ui.fragment.mvp.presenter.FirstPresenter
 import kotlinx.android.synthetic.main.fragment_first.*
 
-class FirstFragment : BaseMvpFragment<FirstPresenter>(), View.OnClickListener,FirstContract.View{
+class FirstFragment : BaseMvpFragment<FirstPresenter>(), View.OnClickListener, FirstContract.View{
     override fun getLayoutId(): Int {
         return R.layout.fragment_first
     }

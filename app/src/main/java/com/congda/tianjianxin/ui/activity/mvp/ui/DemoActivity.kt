@@ -9,7 +9,6 @@ import android.os.IBinder
 import android.view.View
 import com.bigkoo.pickerview.view.OptionsPickerView
 import com.bigkoo.pickerview.view.TimePickerView
-import com.congda.baselibrary.app.BaseApplication
 import com.congda.baselibrary.app.IMSConfig
 import com.congda.baselibrary.base.BaseMvpActivity
 import com.congda.baselibrary.service.BindServiceDemo
@@ -18,6 +17,7 @@ import com.congda.baselibrary.utils.IMTimePickerUtils
 import com.congda.baselibrary.widget.dialog.IMIosCommonDiglog
 import com.congda.baselibrary.widget.dialog.IMSheetViewDialog
 import com.congda.tianjianxin.R
+import com.congda.tianjianxin.ui.activity.RecycleDemoActivity
 import com.congda.tianjianxin.ui.activity.mvp.contract.DemoContract
 import com.congda.tianjianxin.ui.activity.mvp.presenter.DemoPresenter
 import kotlinx.android.synthetic.main.activity_demo.*

@@ -75,6 +75,9 @@ dependencies {
     api 'com.scwang.smartrefresh:SmartRefreshLayout:1.1.2'
     //banner
     api 'com.youth.banner:banner:2.0.8'
+    api 'androidx.viewpager2:viewpager2:1.0.0'
     //baseAdapter
     api 'com.github.CymChad:BaseRecyclerViewAdapterHelper:3.0.0-beta2'
+    //指示器
+    api 'com.github.hackware1993:MagicIndicator:1.5.0'
 }

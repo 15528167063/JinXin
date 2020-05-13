@@ -1,12 +1,15 @@
-package com.congda.tianjianxin.ui.activity.mvp.contract
+package com.congda.tianjianxin.ui.fragment.mvp.contract
 
+import SplashAdBean
+import VersonBeanData
 import com.congda.baselibrary.mvp.IModel
 import com.congda.baselibrary.mvp.IView
+import com.congda.baselibrary.net.BaseHttpResult
 import com.congda.baselibrary.net.TypeOneBaseHttpResult
 import com.congda.tianjianxin.bean.BannerBean
 import io.reactivex.Observable
 
-interface RecycleDemoContract {
+interface ListFirstContract {
     interface View : IView{
         fun hanedBannerData(baseHttpResult: TypeOneBaseHttpResult<MutableList<BannerBean>>)
         fun hanedListData(bean:MutableList<String>)
