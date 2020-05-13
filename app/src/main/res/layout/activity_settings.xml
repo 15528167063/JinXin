@@ -20,6 +20,7 @@
             android:layout_height="37.5dp"
             android:gravity="center_vertical"
             android:paddingLeft="12dp"
+            android:background="@color/colorPrimary"
             android:text="应用的新消息设置"
             android:textColor="@color/color_cccccc"
             android:textSize="14sp" />

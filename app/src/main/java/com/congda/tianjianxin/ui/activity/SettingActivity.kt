@@ -14,7 +14,7 @@ class SettingActivity : BaseActivity(), SwitchButton.OnCheckedChangeListener, Vi
         return R.layout.activity_settings
     }
     override fun initView() {
-
+        common_top.setTopTitle("系统设置")
     }
     override fun initListener() {
         sov4.setOnClickListener(this)
