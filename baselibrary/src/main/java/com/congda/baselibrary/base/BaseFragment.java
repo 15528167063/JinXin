@@ -11,6 +11,7 @@ import androidx.annotation.Nullable;
 
 import com.congda.baselibrary.R;
 import com.congda.baselibrary.widget.ActivityUtils;
+import com.congda.baselibrary.widget.IMRefreshUtils;
 import com.congda.baselibrary.widget.loading.ShowLoadiongUtils;
 import com.trello.rxlifecycle2.components.support.RxFragment;
 
@@ -18,9 +19,7 @@ import org.greenrobot.eventbus.EventBus;
 
 
 public abstract class BaseFragment extends RxFragment {
-
-
-
+    public IMRefreshUtils  imRefreshUtils;
     /**
      * 缓存Fragment view
      */
@@ -46,6 +45,7 @@ public abstract class BaseFragment extends RxFragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        imRefreshUtils=new IMRefreshUtils(getActivity());
         initView();
         initListener();
     }

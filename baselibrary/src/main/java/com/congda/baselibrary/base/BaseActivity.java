@@ -10,6 +10,7 @@ import com.congda.baselibrary.R;
 import com.congda.baselibrary.utils.IMLogUtil;
 import com.congda.baselibrary.utils.IMStatusBarUtil;
 import com.congda.baselibrary.widget.ActivityUtils;
+import com.congda.baselibrary.widget.IMRefreshUtils;
 import com.congda.baselibrary.widget.loading.ShowLoadiongUtils;
 
 import org.greenrobot.eventbus.EventBus;
@@ -27,7 +28,7 @@ public abstract class BaseActivity extends BaseSwipeBackActivity implements Easy
     String[] perms = { Manifest.permission.CAMERA,
             Manifest.permission.READ_EXTERNAL_STORAGE,
             Manifest.permission.WRITE_EXTERNAL_STORAGE};
-
+    public IMRefreshUtils  imRefreshUtils;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,9 +38,11 @@ public abstract class BaseActivity extends BaseSwipeBackActivity implements Easy
         if (useEventBus()) {
             EventBus.getDefault().register(this);//注册eventBus
         }
+        imRefreshUtils=new IMRefreshUtils(this);
         initView();
         initListener();
         initData();
+
     }
 
     protected abstract int getLayoutId();

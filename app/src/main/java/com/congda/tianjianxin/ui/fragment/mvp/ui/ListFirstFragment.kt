@@ -40,9 +40,10 @@ class ListFirstFragment : BaseMvpFragment<ListFirstPresenter>(),ListFirstContrac
     }
 
     override fun initView() {
-        IMRefreshUtils.initRefreshMore(refreshLayout,this,this)
-        IMRefreshUtils.initVRecycle(activity,recyclerView)
+        imRefreshUtils.initRefreshMore(refreshLayout,this,this)
+        imRefreshUtils.initVRecycle(recyclerView)
         adapter = RecycleDemodapter()
+        adapter.setAnimationWithDefault(BaseQuickAdapter.AnimationType.SlideInRight)
         adapter.setOnItemClickListener(this)
         recyclerView.adapter=adapter
         adapterAddView()

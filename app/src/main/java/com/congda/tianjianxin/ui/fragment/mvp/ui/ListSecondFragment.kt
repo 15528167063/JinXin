@@ -1,5 +1,6 @@
 package com.congda.tianjianxin.ui.fragment.mvp.ui
 
+import com.chad.library.adapter.base.BaseQuickAdapter
 import com.congda.baselibrary.base.BaseMvpFragment
 import com.congda.baselibrary.widget.IMRefreshUtils
 import com.congda.baselibrary.widget.MyChatHeadView
@@ -25,8 +26,8 @@ class ListSecondFragment : BaseMvpFragment<ListScondPresenter>(), ListScondContr
 
     override fun initView() {
         refreshLayout.setRefreshHeader(MyChatHeadView(activity))
-        IMRefreshUtils.initRefresh(refreshLayout,this)
-        IMRefreshUtils.initVRecycle(activity,recyclerView)
+        imRefreshUtils.initRefresh(refreshLayout,this)
+        imRefreshUtils.initVRecycle(recyclerView)
     }
 
     override fun initListener() {
@@ -36,6 +37,7 @@ class ListSecondFragment : BaseMvpFragment<ListScondPresenter>(), ListScondContr
         val getdata = mPresenter.getdata()
         datas.addAll(getdata)
         adapter=RecycleSecondadpter(datas)
+        adapter.setAnimationWithDefault( BaseQuickAdapter.AnimationType.ScaleIn)
         recyclerView.adapter=adapter
 
     }
