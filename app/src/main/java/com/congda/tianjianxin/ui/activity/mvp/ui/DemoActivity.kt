@@ -7,6 +7,9 @@ import android.content.ServiceConnection
 import android.os.Bundle
 import android.os.IBinder
 import android.view.View
+import com.afollestad.materialdialogs.MaterialDialog
+import com.afollestad.materialdialogs.bottomsheets.BottomSheet
+import com.afollestad.materialdialogs.customview.customView
 import com.bigkoo.pickerview.view.OptionsPickerView
 import com.bigkoo.pickerview.view.TimePickerView
 import com.congda.baselibrary.app.IMSConfig
@@ -72,6 +75,7 @@ class DemoActivity : BaseMvpActivity<DemoPresenter>(), DemoContract.View, View.O
         btn10.setOnClickListener(this)
         btn11.setOnClickListener(this)
         btn12.setOnClickListener(this)
+        btn13.setOnClickListener(this)
     }
 
     override fun onClick(p0: View?) {
@@ -111,6 +115,9 @@ class DemoActivity : BaseMvpActivity<DemoPresenter>(), DemoContract.View, View.O
             }
             R.id.btn12->{
                 btn12OnClick()
+            }
+            R.id.btn13->{
+                btn13OnClick()
             }
             R.id.iv1 -> {
                 mPresenter.showSheetView(this)
@@ -184,7 +191,13 @@ class DemoActivity : BaseMvpActivity<DemoPresenter>(), DemoContract.View, View.O
         }
         isBind = bindService(intent, mConn, Context.BIND_AUTO_CREATE)
     }
-
+    private fun btn13OnClick() {
+        MaterialDialog(this, BottomSheet()).show {
+            title(text = "温馨提示")
+            customView(R.layout.layout_custom_view,scrollable = true,horizontalPadding = true)
+            cornerRadius(16f)
+        }
+    }
     override fun onDestroy() {
         stopService()
         super.onDestroy()
