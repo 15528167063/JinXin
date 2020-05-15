@@ -24,6 +24,8 @@ public class CommonTitleView extends LinearLayout {
     private ImageView mIvRight;
     private TextView mTvRight;
     private View mTopView;
+    private RelativeLayout mRlTop;
+
     OnClickListener leftListener;
     OnClickListener rightListener;
 
@@ -52,6 +54,8 @@ public class CommonTitleView extends LinearLayout {
         mTvRight = view.findViewById(R.id.tv_top_right);
         mIvRight = view.findViewById(R.id.iv_top_right);
         mTopView = view.findViewById(R.id.topview);
+        mRlTop = view.findViewById(R.id.rl_top);
+
 
         mRlLeft.setOnClickListener(new OnClickListener() {
             @Override
@@ -65,6 +69,9 @@ public class CommonTitleView extends LinearLayout {
 
     public void setTopViewVisiable(){
         mTopView.setVisibility(VISIBLE);
+    }
+    public void setTopBgColor(int color){
+        mRlTop.setBackgroundColor(color);
     }
     public void setTopViewColor(int color){
         mTopView.setVisibility(VISIBLE);
